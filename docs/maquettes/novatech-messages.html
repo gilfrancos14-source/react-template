@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech – Messages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: { navy: '#0a1f66', brand: '#0a5cf5', soft: '#e8f0ff' }
+    } }
+  };
+</script>
+<style type="text/tailwindcss">
+  .badge { @apply grid h-[24px] min-w-[24px] shrink-0 place-items-center rounded-[7px] bg-brand px-1 text-[13px] font-bold leading-none text-white; }
+</style>
+</head>
+<body class="bg-[#f4f7fe] font-sans text-navy antialiased">
+
+<!-- Overlay mobile -->
+<div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-[274px] -translate-x-full flex-col overflow-y-auto bg-gradient-to-b from-[#0b3399] to-[#07216e] text-white transition-transform duration-200 lg:translate-x-0">
+  <!-- Logo -->
+  <div class="flex h-[96px] shrink-0 items-center px-[35px]">
+    <svg class="h-[46px] w-[41px] shrink-0" viewBox="0 0 46 50" fill="none">
+      <polygon points="23,2 43,13.5 43,36.5 23,48 3,36.5 3,13.5" fill="#1a62ff"/>
+      <polygon points="23,2 43,13.5 23,25 3,13.5" fill="#4d8bff"/>
+      <polygon points="23,25 43,13.5 43,36.5 23,48" fill="#0b3fc9"/>
+      <polygon points="23,13 33,19 33,31 23,37 13,31 13,19" fill="#0a2a8c"/>
+      <polygon points="23,13 33,19 23,25 13,19" fill="#2f6fff"/>
+    </svg>
+    <span class="ml-[14px] text-[26px] font-semibold tracking-tight">NovaTech</span>
+    <i data-lucide="chevron-right" class="ml-auto h-5 w-5 text-white/80"></i>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="mt-[10px] px-[11px]">
+    <ul>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="house" class="h-6 w-6 fill-white"></i>Tableau de bord</a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="shopping-cart" class="h-6 w-6 fill-white"></i>Commandes<span class="ml-auto grid h-[26px] w-[26px] place-items-center rounded-full bg-[#1a5cff] text-[12.5px] font-semibold">12</span></a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="box" class="h-6 w-6 fill-white"></i>Produits</a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="user" class="h-6 w-6 fill-white"></i>Clients</a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="chart-no-axes-column-increasing" class="h-6 w-6 stroke-[3]"></i>Rapports</a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex h-[56px] w-full items-center gap-[21px] rounded-xl bg-brand px-5 text-[15px] font-semibold"><i data-lucide="message-circle" class="h-6 w-6 fill-white"></i>Messages<span class="ml-auto grid h-[26px] w-[26px] place-items-center rounded-full bg-[#0a2f9c] text-[12.5px] font-semibold">3</span></a></li>
+      <li class="flex h-[55px] items-center"><a href="#" class="flex w-full items-center gap-[21px] px-5 text-[15px] font-medium"><i data-lucide="settings" class="h-6 w-6 fill-white"></i>Paramètres</a></li>
+    </ul>
+  </nav>
+
+  <!-- Carte Pro -->
+  <div class="mx-[21px] mb-6 mt-auto flex w-[235px] shrink-0 flex-col items-center rounded-xl border border-[#2b55c4] bg-[#0b3aa8]/80 px-[18px] pb-[23px] pt-[22px] text-center lg:mb-[75px]">
+    <i data-lucide="crown" class="h-7 w-7 fill-white"></i>
+    <p class="mt-[10px] text-[15px] font-bold">Passez à la version Pro</p>
+    <p class="mt-[14px] text-[12.5px] leading-[21px] text-white/90">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+    <button class="mt-[16px] h-[45px] w-[177px] rounded-lg bg-brand text-[15px] font-semibold text-white transition hover:bg-[#1f6bff]">Voir les offres</button>
+  </div>
+</aside>
+
+<!-- ============ CONTENU ============ -->
+<div class="lg:pl-[274px]">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-20 flex h-[78px] items-center gap-4 bg-white px-4 shadow-[0_2px_10px_rgba(20,50,140,0.08)] sm:px-[26px] lg:pr-[36px]">
+    <button id="menuBtn" class="grid h-10 w-10 place-items-center rounded-lg bg-soft text-brand lg:hidden" aria-label="Ouvrir le menu"><i data-lucide="menu" class="h-5 w-5"></i></button>
+    <label class="flex h-[43px] w-full max-w-[525px] items-center gap-[14px] rounded-xl bg-[#eaf1ff] px-[18px]">
+      <i data-lucide="search" class="h-[22px] w-[22px] text-[#2f5be0]"></i>
+      <input id="search" type="text" placeholder="Rechercher une conversation..." class="w-full bg-transparent text-[14px] text-navy outline-none placeholder:text-[#4a67c9]">
+    </label>
+    <div class="ml-auto flex items-center gap-[36px] lg:gap-[49px]">
+      <button class="relative" aria-label="Notifications">
+        <i data-lucide="bell" class="h-[30px] w-[30px] text-[#1a4fd6]"></i>
+        <span class="absolute -right-[3px] -top-[6px] grid h-[17px] w-[17px] place-items-center rounded-full border border-white bg-[#ef3b3b] text-[10px] font-bold text-white">3</span>
+      </button>
+      <div class="flex items-center gap-[18px]">
+        <img class="avatar h-[52px] w-[52px] rounded-full object-cover" data-skin="#5a3622" data-hair="short" src="assets/avatars/admin.jpg" alt="Bidosessi G.">
+        <div class="hidden leading-[21px] sm:block">
+          <p class="text-[15px] font-bold text-navy">Bidosessi G.</p>
+          <p class="text-[14px] text-[#4a67c9]">Administrateur</p>
+        </div>
+        <i data-lucide="chevron-down" class="hidden h-5 w-5 text-[#2f5be0] sm:block"></i>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-4 pb-[71px] pt-[25px] sm:pl-[26px] sm:pr-[15px]">
+    <!-- Titre de page -->
+    <div class="flex items-center gap-5">
+      <div class="grid h-[50px] w-[53px] shrink-0 place-items-center rounded-xl bg-white shadow-[0_3px_10px_rgba(20,50,140,0.10)]">
+        <svg class="h-[38px] w-[40px]" viewBox="0 0 40 40" fill="none"><path d="M9 4h22a7 7 0 0 1 7 7v12a7 7 0 0 1-7 7H21l-8 7v-7H9a7 7 0 0 1-7-7V11a7 7 0 0 1 7-7z" fill="#0a5cf5"/></svg>
+      </div>
+      <div>
+        <h1 class="text-[32px] font-bold leading-[36px] text-navy">Messages</h1>
+        <p class="mt-[3px] text-[15px] leading-[20px] text-[#4560c8]">Échangez avec vos clients et restez à l’écoute de leurs besoins.</p>
+      </div>
+    </div>
+
+    <!-- Panneaux -->
+    <div class="mt-[39px] grid gap-[14px] lg:h-[calc(100vh-263px)] lg:min-h-[640px] lg:grid-cols-[414px_minmax(0,1fr)]">
+
+      <!-- ===== Liste des conversations ===== -->
+      <section class="flex h-[640px] min-h-0 flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_18px_rgba(20,50,140,0.08)] lg:h-auto">
+        <div class="flex shrink-0 px-3 pb-[11px]">
+          <button data-tab="all" class="tab relative flex h-[52px] flex-1 items-start justify-center pt-[19px] text-[15px] font-semibold text-brand">
+            Toutes (12)<span class="absolute bottom-0 h-[3px] w-[108px] rounded-full bg-brand"></span>
+          </button>
+          <button data-tab="unread" class="tab relative flex h-[52px] flex-1 items-start justify-center pt-[19px] text-[15px] font-medium text-navy">Non lus (3)<span class="absolute bottom-0 hidden h-[3px] w-[108px] rounded-full bg-brand"></span></button>
+          <button data-tab="archived" class="tab relative flex h-[52px] flex-1 items-start justify-center pt-[19px] text-[15px] font-medium text-navy">Archivés<span class="absolute bottom-0 hidden h-[3px] w-[108px] rounded-full bg-brand"></span></button>
+        </div>
+
+        <ul id="convList" class="min-h-0 flex-1 overflow-y-auto px-[5px]">
+          <li><button data-name="Aminata D." data-unread="1" data-active="true" class="conv group flex h-[96px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[62px] w-[62px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/aminata.jpg" alt="Aminata D.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[16px] font-bold text-navy">Aminata D.</span><span class="text-[14px] text-[#3b5fd9]">14:32</span></span>
+              <span class="mt-[5px] flex items-center justify-between"><span class="truncate text-[14.5px] text-[#2a45a8]">Bonjour, est-ce que ce produit...</span><span class="badge ml-3">1</span></span>
+            </span></button></li>
+
+          <li><button data-name="Koffi S." data-unread="1" class="conv group flex h-[91px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[62px] w-[62px] shrink-0 rounded-full object-cover" data-skin="#7a4a2e" data-hair="short" src="assets/avatars/koffi.jpg" alt="Koffi S.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[16px] font-bold text-navy">Koffi S.</span><span class="text-[14px] text-[#3b5fd9]">13:50</span></span>
+              <span class="mt-[5px] flex items-center justify-between"><span class="truncate text-[14.5px] text-[#2a45a8]">Merci beaucoup ! 🙏</span><span class="badge ml-3">1</span></span>
+            </span></button></li>
+
+          <li><button data-name="Sika T." data-unread="1" class="conv group flex h-[86px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[62px] w-[62px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/sika.jpg" alt="Sika T.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[16px] font-bold text-navy">Sika T.</span><span class="text-[14px] text-[#3b5fd9]">12:15</span></span>
+              <span class="mt-[5px] flex items-center justify-between"><span class="truncate text-[14.5px] text-[#2a45a8]">D'accord, je valide ma commande.</span><span class="badge ml-3">1</span></span>
+            </span></button></li>
+
+          <li><button data-name="Yao M." class="conv group flex h-[80px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[60px] w-[60px] shrink-0 rounded-full object-cover" data-skin="#7a4a2e" data-hair="short" src="assets/avatars/yao.jpg" alt="Yao M.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[16px] font-bold text-navy">Yao M.</span><span class="text-[13px] text-[#5470c8]">Hier</span></span>
+              <span class="mt-[5px] truncate text-[14.5px] text-[#2a45a8]">Quand est-ce que ma commande...</span>
+            </span></button></li>
+
+          <li><button data-name="Fati B." class="conv group flex h-[80px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[62px] w-[62px] shrink-0 rounded-full object-cover" data-skin="#8a5a3c" data-hair="long" src="assets/avatars/fati.jpg" alt="Fati B.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[16px] font-bold text-navy">Fati B.</span><span class="text-[13px] text-[#5470c8]">Hier</span></span>
+              <span class="mt-[5px] truncate text-[14.5px] text-[#2a45a8]">Parfait, merci !</span>
+            </span></button></li>
+
+          <li><button data-name="Rachid A." class="conv group flex h-[70px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[58px] w-[58px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="short" src="assets/avatars/rachid.jpg" alt="Rachid A.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[15.5px] font-bold text-navy">Rachid A.</span><span class="text-[12.5px] text-[#5470c8]">Mar. 19 oct.</span></span>
+              <span class="mt-[4px] truncate text-[13px] text-[#2a45a8]">Est-ce possible de modifier l’adresse ?</span>
+            </span></button></li>
+
+          <li><button data-name="Marian K." class="conv group flex h-[70px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[58px] w-[58px] shrink-0 rounded-full object-cover" data-skin="#7a4a2e" data-hair="short" src="assets/avatars/marian.jpg" alt="Marian K.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[15.5px] font-bold text-navy">Marian K.</span><span class="text-[12.5px] text-[#5470c8]">Mar. 19 oct.</span></span>
+              <span class="mt-[4px] truncate text-[13px] text-[#2a45a8]">Très bien, merci.</span>
+            </span></button></li>
+
+          <li><button data-name="Diallo M." class="conv group flex h-[66px] w-full items-center gap-[21px] rounded-xl border border-transparent px-[15px] text-left data-[active=true]:border-[#b9d0fb] data-[active=true]:bg-soft">
+            <img class="avatar h-[56px] w-[56px] shrink-0 rounded-full object-cover" data-skin="#5a3622" data-hair="short" src="assets/avatars/diallo.jpg" alt="Diallo M.">
+            <span class="flex h-full min-w-0 flex-1 flex-col justify-center border-b border-[#e4eaf8] group-data-[active=true]:border-transparent">
+              <span class="flex items-center justify-between"><span class="text-[15.5px] font-bold text-navy">Diallo M.</span><span class="text-[12.5px] text-[#5470c8]">Lun. 18 oct.</span></span>
+              <span class="mt-[4px] truncate text-[13px] text-[#2a45a8]">Ok, c'est noté.</span>
+            </span></button></li>
+        </ul>
+
+        <div class="shrink-0 px-[14px] pb-[10px] pt-[8px]">
+          <button class="flex h-[35px] w-full items-center justify-center gap-2 rounded-lg bg-[#eef3ff] text-[14px] font-medium text-[#1a4fd6] transition hover:bg-soft">Voir plus de messages <i data-lucide="chevron-down" class="h-4 w-4"></i></button>
+        </div>
+      </section>
+
+      <!-- ===== Fenêtre de chat ===== -->
+      <section class="flex h-[640px] min-h-0 min-w-0 flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_18px_rgba(20,50,140,0.08)] lg:h-auto">
+        <!-- En-tête du chat -->
+        <div class="flex h-[83px] shrink-0 items-center border-b border-[#e6ecf8] px-4 sm:px-[23px]">
+          <div class="relative shrink-0">
+            <img id="chatAvatar" class="avatar h-[64px] w-[64px] rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/aminata.jpg" alt="Aminata D.">
+            <span class="absolute bottom-[1px] right-[0px] h-[15px] w-[15px] rounded-full border-2 border-white bg-[#16c05a]"></span>
+          </div>
+          <div class="ml-[23px] min-w-0">
+            <h2 id="chatName" class="truncate text-[22px] font-bold leading-[26px] text-navy">Aminata D.</h2>
+            <p class="mt-[3px] flex items-center gap-[8px] text-[14.5px] text-[#4560c8]"><span class="h-[11px] w-[11px] rounded-full bg-[#16c05a]"></span>En ligne</p>
+          </div>
+          <div class="ml-auto flex gap-[13px]">
+            <button class="grid h-[50px] w-[52px] place-items-center rounded-xl bg-soft text-brand transition hover:bg-[#d9e6ff]" aria-label="Appeler"><i data-lucide="phone" class="h-6 w-6 fill-brand"></i></button>
+            <button class="grid h-[50px] w-[52px] place-items-center rounded-xl bg-soft text-brand transition hover:bg-[#d9e6ff]" aria-label="Appel vidéo"><i data-lucide="video" class="h-6 w-6 fill-brand"></i></button>
+            <button class="grid h-[50px] w-[52px] place-items-center rounded-xl bg-soft text-brand transition hover:bg-[#d9e6ff]" aria-label="Plus d'options"><i data-lucide="ellipsis" class="h-6 w-6 stroke-[3]"></i></button>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="flex min-h-0 flex-1 flex-col gap-[20px] overflow-y-auto bg-[#fbfcff] px-4 pb-4 pt-[29px] sm:pl-[23px] sm:pr-[17px]">
+          <!-- Reçu 1 -->
+          <div class="flex items-start gap-[15px]">
+            <img class="avatar h-[54px] w-[54px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/aminata.jpg" alt="">
+            <div class="w-[368px] max-w-[calc(100%-70px)] rounded-2xl bg-[#eef1f9] px-[17px] pb-[6px] pt-[13px]">
+              <p class="text-[16.5px] leading-[21px] text-navy">Bonjour, est-ce que ce produit est encore disponible ?</p>
+              <p class="mt-[4px] text-right text-[12.5px] leading-[14px] text-[#5470c8]">14:20</p>
+            </div>
+          </div>
+          <!-- Envoyé 1 -->
+          <div class="flex items-start justify-end gap-[17px]">
+            <div class="w-[320px] max-w-[calc(100%-70px)] rounded-2xl bg-brand px-[17px] pb-[6px] pt-[13px] text-white">
+              <p class="text-[16.5px] leading-[22px]">Bonjour ! Oui, il est bien disponible. Souhaitez-vous plus d'informations ?</p>
+              <p class="mt-[6px] flex items-center justify-end gap-[6px] text-[12.5px] leading-[14px] text-white/90">14:23 <i data-lucide="check-check" class="h-[15px] w-[15px]"></i></p>
+            </div>
+            <img class="avatar h-[52px] w-[52px] shrink-0 rounded-full object-cover" data-skin="#5a3622" data-hair="short" src="assets/avatars/admin.jpg" alt="">
+          </div>
+          <!-- Reçu 2 -->
+          <div class="flex items-start gap-[15px]">
+            <img class="avatar h-[54px] w-[54px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/aminata.jpg" alt="">
+            <div class="w-[391px] max-w-[calc(100%-70px)] rounded-2xl bg-[#eef1f9] px-[17px] pb-[6px] pt-[13px]">
+              <p class="text-[16.5px] leading-[21px] text-navy">Oui, pouvez-vous me dire le délai de livraison pour Cotonou ?</p>
+              <p class="mt-[12px] text-right text-[12.5px] leading-[14px] text-[#5470c8]">14:28</p>
+            </div>
+          </div>
+          <!-- Envoyé 2 -->
+          <div class="flex items-start justify-end gap-[17px]">
+            <div class="w-[329px] max-w-[calc(100%-70px)] rounded-2xl bg-brand px-[17px] pb-[6px] pt-[13px] text-white">
+              <p class="text-[16.5px] leading-[22px]">Bien sûr, la livraison prend généralement entre 2 et 5 jours ouvrés à Cotonou.</p>
+              <p class="mt-[8px] flex items-center justify-end gap-[6px] text-[12.5px] leading-[14px] text-white/90">14:30 <i data-lucide="check-check" class="h-[15px] w-[15px]"></i></p>
+            </div>
+            <img class="avatar h-[52px] w-[52px] shrink-0 rounded-full object-cover" data-skin="#5a3622" data-hair="short" src="assets/avatars/admin.jpg" alt="">
+          </div>
+          <!-- Reçu 3 -->
+          <div class="flex items-start gap-[15px]">
+            <img class="avatar h-[54px] w-[54px] shrink-0 rounded-full object-cover" data-skin="#6b3f26" data-hair="long" src="assets/avatars/aminata.jpg" alt="">
+            <div class="w-[284px] max-w-[calc(100%-70px)] rounded-2xl bg-[#eef1f9] px-[17px] pb-[6px] pt-[13px]">
+              <p class="text-[16.5px] leading-[21px] text-navy">Parfait, merci beaucoup ! 🙏</p>
+              <p class="mt-[5px] text-right text-[12.5px] leading-[14px] text-[#5470c8]">14:32</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zone de saisie -->
+        <form id="composer" class="flex shrink-0 items-center gap-[14px] border-t border-[#e6ecf8] bg-white px-[13px] pb-[22px] pt-[13px] sm:pr-[19px]">
+          <div class="flex h-[64px] min-w-0 flex-1 items-center rounded-xl border border-[#d6e0f5] bg-white pr-[18px]">
+            <button type="button" class="grid h-full w-[62px] shrink-0 place-items-center border-r border-[#d6e0f5] text-[#2f5be0]" aria-label="Joindre un fichier"><i data-lucide="paperclip" class="h-6 w-6"></i></button>
+            <input id="msgInput" type="text" autocomplete="off" placeholder="Tapez votre message..." class="min-w-0 flex-1 bg-transparent px-[13px] text-[16.5px] text-navy outline-none placeholder:text-[#6f87d3]">
+            <button type="button" class="text-[#2f5be0]" aria-label="Emoji"><i data-lucide="smile" class="h-[30px] w-[30px]"></i></button>
+          </div>
+          <button type="submit" class="grid h-[58px] w-[64px] shrink-0 place-items-center rounded-xl bg-brand text-white shadow-[0_4px_12px_rgba(10,92,245,0.35)] transition hover:bg-[#1f6bff]" aria-label="Envoyer"><i data-lucide="send" class="h-[26px] w-[26px] fill-white"></i></button>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- Modèle de message envoyé -->
+<template id="tplSent">
+  <div class="flex items-start justify-end gap-[17px]">
+    <div class="max-w-[calc(100%-70px)] rounded-2xl bg-brand px-[17px] pb-[6px] pt-[13px] text-white">
+      <p class="msg-text break-words text-[16.5px] leading-[22px]"></p>
+      <p class="mt-[6px] flex items-center justify-end gap-[6px] text-[12.5px] leading-[14px] text-white/90"><span class="msg-time"></span><i data-lucide="check-check" class="h-[15px] w-[15px]"></i></p>
+    </div>
+    <img class="avatar h-[52px] w-[52px] shrink-0 rounded-full object-cover" data-skin="#5a3622" data-hair="short" src="assets/avatars/admin.jpg" alt="">
+  </div>
+</template>
+
+<script>
+  /* ---------- Icônes ---------- */
+  lucide.createIcons();
+
+  /* ---------- Avatars : repli SVG si la photo est absente ---------- */
+  function fallbackAvatar(img) {
+    if (img.dataset.fb) return;
+    img.dataset.fb = '1';
+    const skin = img.dataset.skin || '#7a4a2e';
+    const long = img.dataset.hair === 'long';
+    const hair = '#1b1210';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#cfdcf6"/>
+      ${long ? `<ellipse cx="50" cy="44" rx="27" ry="32" fill="${hair}"/>` : ''}
+      <path d="M10 100Q12 70 50 68Q88 70 90 100Z" fill="${long ? '#f3f0ea' : '#1c2a55'}"/>
+      <rect x="44" y="56" width="12" height="14" fill="${skin}"/>
+      <ellipse cx="50" cy="42" rx="18" ry="22" fill="${skin}"/>
+      ${long ? `<path d="M31 40Q34 18 50 18Q66 18 69 40Q58 28 31 40Z" fill="${hair}"/>` : `<path d="M31 38Q31 18 50 18Q69 18 69 38Q60 28 50 28Q40 28 31 38Z" fill="${hair}"/>`}
+    </svg>`;
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+  document.querySelectorAll('img.avatar').forEach(img => {
+    img.addEventListener('error', () => fallbackAvatar(img));
+    if (img.complete && img.naturalWidth === 0) fallbackAvatar(img);
+  });
+
+  /* ---------- Menu mobile ---------- */
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const toggleMenu = open => {
+    sidebar.classList.toggle('-translate-x-full', !open);
+    overlay.classList.toggle('hidden', !open);
+  };
+  document.getElementById('menuBtn').addEventListener('click', () => toggleMenu(true));
+  overlay.addEventListener('click', () => toggleMenu(false));
+
+  /* ---------- Onglets + recherche ---------- */
+  const convs = [...document.querySelectorAll('.conv')];
+  const tabs = [...document.querySelectorAll('.tab')];
+  const search = document.getElementById('search');
+  let currentTab = 'all';
+
+  function applyFilters() {
+    const q = search.value.trim().toLowerCase();
+    convs.forEach(c => {
+      const matchTab = currentTab === 'all' || (currentTab === 'unread' && c.dataset.unread === '1');
+      const matchQ = c.dataset.name.toLowerCase().includes(q) || c.textContent.toLowerCase().includes(q);
+      c.parentElement.classList.toggle('hidden', !(currentTab !== 'archived' && matchTab && matchQ));
+    });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => {
+    currentTab = t.dataset.tab;
+    tabs.forEach(o => {
+      const on = o === t;
+      o.classList.toggle('text-brand', on);
+      o.classList.toggle('font-semibold', on);
+      o.classList.toggle('text-navy', !on);
+      o.classList.toggle('font-medium', !on);
+      o.querySelector('span').classList.toggle('hidden', !on);
+    });
+    applyFilters();
+  }));
+  search.addEventListener('input', applyFilters);
+
+  /* ---------- Sélection d'une conversation ---------- */
+  const chatName = document.getElementById('chatName');
+  const chatAvatar = document.getElementById('chatAvatar');
+  convs.forEach(c => c.addEventListener('click', () => {
+    convs.forEach(o => o.dataset.active = (o === c));
+    chatName.textContent = c.dataset.name;
+    const src = c.querySelector('img.avatar');
+    chatAvatar.dataset.fb = '';
+    chatAvatar.dataset.skin = src.dataset.skin;
+    chatAvatar.dataset.hair = src.dataset.hair;
+    chatAvatar.alt = c.dataset.name;
+    chatAvatar.src = src.getAttribute('src').startsWith('data:') ? src.src : src.getAttribute('src');
+  }));
+
+  /* ---------- Envoi d'un message ---------- */
+  const box = document.getElementById('messages');
+  const input = document.getElementById('msgInput');
+  document.getElementById('composer').addEventListener('submit', e => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    const node = document.getElementById('tplSent').content.cloneNode(true);
+    node.querySelector('.msg-text').textContent = text;
+    node.querySelector('.msg-time').textContent = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    const img = node.querySelector('img.avatar');
+    img.addEventListener('error', () => fallbackAvatar(img));
+    box.appendChild(node);
+    lucide.createIcons();
+    input.value = '';
+    box.scrollTop = box.scrollHeight;
+  });
+</script>
+</body>
+</html>

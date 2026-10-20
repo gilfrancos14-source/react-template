@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NovaTech – Commandes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="bg-[#f3f7ff] font-sans text-[#0a1f6b] antialiased">
+
+<div class="flex min-h-screen">
+
+  <!-- Overlay mobile -->
+  <div id="overlay" class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"></div>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside id="sidebar"
+    class="fixed top-0 left-0 z-50 flex h-screen w-[273px] shrink-0 -translate-x-full flex-col bg-gradient-to-b from-[#0c2f98] to-[#071c63] transition-transform lg:sticky lg:translate-x-0">
+    <div class="flex h-[88px] items-center gap-[14px] px-[38px] pt-[2px]">
+      <div class="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-gradient-to-br from-[#3f8bff] to-[#1a5cf5] text-white shadow-lg">
+        <i data-lucide="package" class="h-[24px] w-[24px]"></i>
+      </div>
+      <span class="text-[22px] font-bold tracking-tight text-white">NovaTech</span>
+      <i data-lucide="chevron-right" class="ml-auto h-[18px] w-[18px] text-[#9db4e8]"></i>
+    </div>
+    <nav id="nav" class="mt-[8px] flex flex-col gap-[6px] px-[16px]"></nav>
+
+    <div class="mt-auto px-[26px] pb-[65px]">
+      <div class="flex flex-col items-center rounded-[12px] border border-[#2158d8] bg-[#0a2889] px-[24px] pb-[22px] pt-[22px] text-center">
+        <i data-lucide="crown" class="h-[26px] w-[26px] fill-white text-white"></i>
+        <p class="mt-[10px] text-[14px] font-bold text-white">Passez à la version Pro</p>
+        <p class="mt-[10px] text-[12px] leading-[19px] text-[#d4e0fb]">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+        <button class="mt-[18px] h-[44px] w-full rounded-[8px] bg-[#1a5cf5] text-[14px] font-semibold text-white transition hover:bg-[#3470ff]">Voir les offres</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== CONTENU ========== -->
+  <div class="min-w-0 flex-1">
+
+    <!-- Header -->
+    <header class="flex h-[76px] items-center gap-[16px] bg-white px-[16px] shadow-[0_2px_10px_rgba(20,60,160,0.06)] sm:px-[28px] lg:pl-[28px] lg:pr-[24px]">
+      <button id="menuBtn" class="rounded-lg p-2 text-[#0a1f6b] hover:bg-[#eaf2ff] lg:hidden" aria-label="Ouvrir le menu">
+        <i data-lucide="menu" class="h-6 w-6"></i>
+      </button>
+      <label class="flex h-[42px] w-full max-w-[506px] items-center gap-[14px] rounded-[10px] bg-[#eaf2ff] px-[16px]">
+        <i data-lucide="search" class="h-[20px] w-[20px] text-[#5d7bc2]"></i>
+        <input type="text" placeholder="Rechercher une commande, un client..." class="w-full bg-transparent text-[14px] text-[#0a1f6b] outline-none placeholder:text-[#6f86bd]">
+      </label>
+      <div class="ml-auto flex items-center gap-[28px]">
+        <button class="relative text-[#1d5df0]" aria-label="Notifications">
+          <i data-lucide="bell" class="h-[28px] w-[28px]"></i>
+          <span class="absolute -right-[6px] -top-[6px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#ef4444] text-[10px] font-bold text-white">3</span>
+        </button>
+        <div class="flex items-center gap-[14px]">
+          <div class="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gradient-to-br from-[#7a4a2b] to-[#2d1a10] text-[16px] font-bold text-white">BG</div>
+          <div class="hidden leading-tight sm:block">
+            <p class="text-[15px] font-bold">Bidosessi G.</p>
+            <p class="mt-[3px] text-[14px] text-[#5d7bc2]">Administrateur</p>
+          </div>
+          <i data-lucide="chevron-down" class="ml-[10px] hidden h-[18px] w-[18px] text-[#0a1f6b] sm:block"></i>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-[16px] pb-[18px] pt-[20px] sm:px-[24px] lg:pl-[28px] lg:pr-[23px]">
+
+      <!-- Titre + action -->
+      <div class="flex flex-wrap items-start justify-between gap-4 pb-[26px]">
+        <div>
+          <h1 class="text-[34px] font-extrabold leading-[40px] tracking-tight sm:text-[36px]">Commandes</h1>
+          <p class="mt-[6px] text-[17px] text-[#4f6bb3]">Gérez toutes vos commandes en un seul endroit.</p>
+        </div>
+        <button class="mt-[8px] flex h-[45px] w-[198px] items-center justify-center gap-[12px] rounded-[10px] bg-[#1a5cf5] text-[14px] font-semibold text-white shadow-[0_6px_14px_rgba(26,92,245,0.3)] transition hover:bg-[#3470ff]">
+          <i data-lucide="plus" class="h-[22px] w-[22px]"></i> Nouvelle commande
+        </button>
+      </div>
+
+      <!-- Cartes statistiques -->
+      <section id="stats" class="grid grid-cols-1 gap-[18px] sm:grid-cols-2 xl:grid-cols-4"></section>
+
+      <!-- Tableau -->
+      <section class="mt-[20px] rounded-[10px] bg-white p-[15px] shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+
+        <!-- Barre d'outils -->
+        <div class="flex flex-wrap items-center gap-[16px]">
+          <label class="flex h-[36px] min-w-[220px] flex-1 items-center gap-[12px] rounded-[8px] border border-[#dbe6fb] px-[12px] lg:max-w-[447px]">
+            <i data-lucide="search" class="h-[18px] w-[18px] text-[#5d7bc2]"></i>
+            <input id="search" type="text" placeholder="Rechercher une commande..." class="w-full bg-transparent text-[12.5px] outline-none placeholder:text-[#5d7bc2]">
+          </label>
+          <div class="relative h-[36px] w-[197px]">
+            <select id="statusFilter" class="h-full w-full appearance-none rounded-[8px] border border-[#dbe6fb] bg-white px-[16px] text-[13px] font-medium text-[#0a1f6b] outline-none">
+              <option value="">Tous les statuts</option>
+              <option>En préparation</option><option>Expédiée</option><option>Livrée</option><option>En cours</option><option>Annulée</option>
+            </select>
+            <i data-lucide="chevron-down" class="pointer-events-none absolute right-[14px] top-[10px] h-[16px] w-[16px]"></i>
+          </div>
+          <div class="relative h-[36px] w-[181px]">
+            <select class="h-full w-full appearance-none rounded-[8px] border border-[#dbe6fb] bg-white px-[16px] text-[13px] font-medium text-[#0a1f6b] outline-none">
+              <option>Toutes les dates</option><option>Aujourd'hui</option><option>7 derniers jours</option><option>30 derniers jours</option>
+            </select>
+            <i data-lucide="chevron-down" class="pointer-events-none absolute right-[14px] top-[10px] h-[16px] w-[16px]"></i>
+          </div>
+          <div class="flex h-[40px] w-[241px] items-center justify-center gap-[14px] rounded-[8px] border border-[#dbe6fb] text-[12.5px] font-medium sm:ml-auto lg:ml-[85px]">
+            <i data-lucide="calendar" class="h-[18px] w-[18px] text-[#1d5df0]"></i>
+            <span>20/10/2025</span>
+            <i data-lucide="arrow-right" class="h-[14px] w-[14px] text-[#1d5df0]"></i>
+            <span>20/11/2025</span>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="mt-[18px] overflow-x-auto rounded-[10px] border border-[#e3ecfb]">
+          <div class="min-w-[1186px]">
+            <div class="grid h-[44px] grid-cols-[61px_127px_217px_187px_157px_173px_182px_82px] items-center bg-[#f5f9ff] text-[12.5px] font-medium">
+              <div class="pl-[15px]"><input id="checkAll" type="checkbox" class="h-[16px] w-[16px] rounded border-[#b9c8e8] accent-[#1d5df0]"></div>
+              <div>N° commande</div><div>Client</div><div>Produits</div><div>Montant</div><div>Statut</div><div>Date</div><div>Actions</div>
+            </div>
+            <div id="rows"></div>
+          </div>
+        </div>
+
+        <!-- Pied de tableau -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-[14px]">
+          <p id="count" class="pl-[4px] text-[12px] text-[#5d7bc2]"></p>
+          <div id="pager" class="flex items-center gap-[10px]"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+  const ico = (n, c = '') => `<i data-lucide="${n}" class="${c}"></i>`;
+
+  /* ---- Navigation ---- */
+  const nav = [
+    ['house', 'Tableau de bord'], ['shopping-cart', 'Commandes', '12', true], ['package', 'Produits'],
+    ['user', 'Clients'], ['chart-column', 'Rapports'], ['message-circle', 'Messages', '3'], ['settings', 'Paramètres']
+  ];
+  document.getElementById('nav').innerHTML = nav.map(([i, l, b, active]) => `
+    <a href="#" class="flex h-[54px] items-center gap-[18px] rounded-[12px] pl-[18px] pr-[14px] text-[14px] font-medium ${active ? 'bg-[#1a5cf5] font-semibold text-white shadow-[0_6px_14px_rgba(26,92,245,0.35)]' : 'text-white hover:bg-white/10'}">
+      ${ico(i, `h-[24px] w-[24px] shrink-0 ${active ? 'text-white' : 'text-[#a9bde8]'}`)}
+      <span>${l}</span>
+      ${b ? `<span class="ml-auto flex h-[24px] min-w-[24px] items-center justify-center rounded-full px-[6px] text-[12px] font-semibold text-white ${active ? 'bg-white/25' : 'bg-[#1a5cf5]'}">${b}</span>` : ''}
+    </a>`).join('');
+
+  /* ---- Cartes statistiques ---- */
+  const stats = [
+    ['box', 'Total des commandes', 248, '+12%', 'bg-[#dbe8ff] text-[#1d5df0]'],
+    ['shopping-cart', 'En cours', 36, '+8%', 'bg-[#dbe8ff] text-[#1d5df0]'],
+    ['truck', 'Expédiées', 189, '+15%', 'bg-[#dbe8ff] text-[#1d5df0]'],
+    ['circle-check', 'Livrées', 203, '+18%', 'bg-[#d9f6e8] text-[#12b76a]']
+  ];
+  document.getElementById('stats').innerHTML = stats.map(([i, l, v, d, c]) => `
+    <article class="flex h-[152px] items-start gap-[20px] rounded-[10px] bg-white px-[19px] pt-[19px] shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+      <div class="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[14px] ${c}">${ico(i, 'h-[28px] w-[28px]')}</div>
+      <div>
+        <p class="mt-[5px] text-[14px] font-medium">${l}</p>
+        <p class="mt-[6px] text-[26px] font-extrabold leading-[32px]">${v}</p>
+        <p class="mt-[6px] flex items-center gap-[8px] text-[14px] font-semibold text-[#12b76a]">${ico('arrow-up', 'h-[16px] w-[16px]')}${d}</p>
+        <p class="mt-[6px] text-[12px] text-[#7d92c4]">par rapport au mois dernier</p>
+      </div>
+    </article>`).join('');
+
+  /* ---- Données des commandes ---- */
+  const S = {
+    'En préparation': 'bg-[#fff1d6] text-[#f59e0b]', 'Expédiée': 'bg-[#e4eeff] text-[#1d5df0]',
+    'Livrée': 'bg-[#dcf6e9] text-[#12a15a]', 'En cours': 'bg-[#e4eeff] text-[#1d5df0]', 'Annulée': 'bg-[#ffe1e5] text-[#e5374a]'
+  };
+  const orders = [
+    ['001248', 'Koffi S.', 'koffi@gmail.com', 'from-[#8a5a3c] to-[#3b2418]', 'headphones', '1 article', 1, '45 000 FCFA', 'En préparation', '20/11/2025', '14:32'],
+    ['001247', 'Aminata D.', 'aminata@gmail.com', 'from-[#b07a5a] to-[#4a2c1e]', 'smartphone', '2 articles', 1, '120 000 FCFA', 'Expédiée', '20/11/2025', '11:20'],
+    ['001246', 'Yao M.', 'yao@gmail.com', 'from-[#6d4630] to-[#24140c]', 'footprints', '1 article', 0, '32 000 FCFA', 'Livrée', '19/11/2025', '16:45'],
+    ['001245', 'Fatou B.', 'fatou@gmail.com', 'from-[#a56b4b] to-[#3a2217]', 'backpack', '1 article', 0, '28 000 FCFA', 'En cours', '19/11/2025', '10:12'],
+    ['001244', 'Sika T.', 'sika@gmail.com', 'from-[#7b4e33] to-[#2b180f]', 'ear', '1 article', 0, '75 000 FCFA', 'Expédiée', '18/11/2025', '19:05'],
+    ['001243', 'Rachid A.', 'rachid@gmail.com', 'from-[#9c6a4a] to-[#35200f]', 'watch', '1 article', 0, '65 000 FCFA', 'Livrée', '18/11/2025', '13:28'],
+    ['001242', 'Mariam K.', 'mariam@gmail.com', 'from-[#7a5038] to-[#2a1810]', 'armchair', '1 article', 0, '52 000 FCFA', 'Annulée', '17/11/2025', '09:14'],
+    ['001241', 'Diallo M.', 'diallo@gmail.com', 'from-[#5e3b26] to-[#1f1009]', 'laptop', '1 article', 0, '210 000 FCFA', 'Livrée', '16/11/2025', '17:37']
+  ];
+
+  const rowsEl = document.getElementById('rows');
+  function renderRows() {
+    const q = document.getElementById('search').value.toLowerCase();
+    const st = document.getElementById('statusFilter').value;
+    const list = orders.filter(o => (!st || o[8] === st) && (`${o[0]} ${o[1]} ${o[2]}`.toLowerCase().includes(q)));
+    rowsEl.innerHTML = list.map(o => `
+      <div class="grid h-[61px] grid-cols-[61px_127px_217px_187px_157px_173px_182px_82px] items-center border-t border-[#e8effb] bg-white text-[13px] hover:bg-[#f8fbff]">
+        <div class="pl-[15px]"><input type="checkbox" class="row-check h-[16px] w-[16px] rounded border-[#b9c8e8] accent-[#1d5df0]"></div>
+        <div class="font-bold">#CMD-${o[0]}</div>
+        <div class="flex items-center gap-[15px]">
+          <div class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${o[3]} text-[13px] font-bold text-white">${o[1].slice(0, 1)}${o[1].split(' ')[1].slice(0, 1)}</div>
+          <div class="leading-tight"><p class="font-semibold">${o[1]}</p><p class="mt-[4px] text-[12px] text-[#7d92c4]">${o[2]}</p></div>
+        </div>
+        <div class="flex items-center gap-[14px]">
+          <div class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[8px] border border-[#e3ecfb] bg-[#f6f9ff] text-[#1f2a44]">${ico(o[4], 'h-[22px] w-[22px]')}</div>
+          <span class="text-[12px] text-[#5d7bc2]">${o[5]}</span>
+          ${o[6] ? '<span class="rounded-full bg-[#eef3ff] px-[8px] py-[3px] text-[11px] text-[#1d5df0]">+1</span>' : ''}
+        </div>
+        <div class="font-medium">${o[7]}</div>
+        <div><span class="inline-flex h-[26px] items-center gap-[8px] rounded-full px-[12px] text-[12px] font-medium ${S[o[8]]}"><span class="h-[8px] w-[8px] rounded-full bg-current"></span>${o[8]}</span></div>
+        <div class="leading-tight"><p class="text-[12.5px] font-medium">${o[9]}</p><p class="mt-[6px] text-[11.5px] text-[#7d92c4]">${o[10]}</p></div>
+        <div><button class="flex w-[41px] justify-center text-[#0a1f6b]" aria-label="Actions">${ico('ellipsis', 'h-[20px] w-[20px]')}</button></div>
+      </div>`).join('') || '<p class="py-10 text-center text-[13px] text-[#7d92c4]">Aucune commande trouvée.</p>';
+    document.getElementById('count').textContent = `Affichage de ${list.length} sur 248 commandes`;
+    document.getElementById('checkAll').checked = false;
+    lucide.createIcons();
+  }
+
+  /* ---- Pagination ---- */
+  let page = 1;
+  function renderPager() {
+    const b = 'flex h-[32px] w-[32px] items-center justify-center rounded-[8px] border text-[12.5px] font-medium transition';
+    document.getElementById('pager').innerHTML =
+      `<button data-p="prev" class="${b} border-[#dbe6fb] bg-white text-[#9db4e8]">${ico('chevron-left', 'h-[14px] w-[14px]')}</button>` +
+      [1, 2, 3, 4, 5].map(n => `<button data-p="${n}" class="${b} ${n === page ? 'border-[#1a5cf5] bg-[#1a5cf5] text-white shadow-[0_4px_10px_rgba(26,92,245,0.35)]' : 'border-[#dbe6fb] bg-white'}">${n}</button>`).join('') +
+      `<button data-p="next" class="${b} border-[#dbe6fb] bg-white">${ico('chevron-right', 'h-[14px] w-[14px]')}</button>`;
+    lucide.createIcons();
+  }
+  document.getElementById('pager').addEventListener('click', e => {
+    const p = e.target.closest('button')?.dataset.p; if (!p) return;
+    page = p === 'prev' ? Math.max(1, page - 1) : p === 'next' ? Math.min(5, page + 1) : +p;
+    renderPager();
+  });
+
+  /* ---- Interactions ---- */
+  document.getElementById('search').addEventListener('input', renderRows);
+  document.getElementById('statusFilter').addEventListener('change', renderRows);
+  document.getElementById('checkAll').addEventListener('change', e =>
+    document.querySelectorAll('.row-check').forEach(c => (c.checked = e.target.checked)));
+
+  const sidebar = document.getElementById('sidebar'), overlay = document.getElementById('overlay');
+  const toggleMenu = open => {
+    sidebar.classList.toggle('-translate-x-full', !open);
+    overlay.classList.toggle('hidden', !open);
+  };
+  document.getElementById('menuBtn').addEventListener('click', () => toggleMenu(true));
+  overlay.addEventListener('click', () => toggleMenu(false));
+
+  renderRows();
+  renderPager();
+  lucide.createIcons();
+</script>
+</body>
+</html>

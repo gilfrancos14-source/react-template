@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NovaTech – Clients</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind via CDN : adapté à la démonstration / au prototypage.
+       En production, utiliser une installation Tailwind (CLI / PostCSS) adaptée à votre version. -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: '#0b5cf0',
+            ink: '#0b2563',
+            link: '#1f5bd6',
+            mute: '#6e86b6',
+            line: '#e4ecf8',
+            soft: '#e8f0fd'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icônes Lucide -->
+  <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* Case à cocher personnalisée (non réalisable proprement en utilitaires seuls) */
+    .cb {
+      appearance: none; -webkit-appearance: none;
+      width: 15px; height: 15px; flex-shrink: 0;
+      border: 1.5px solid #a9c0ee; border-radius: 3px;
+      background: #fff; cursor: pointer; display: block;
+    }
+    .cb:checked {
+      border-color: #0b5cf0;
+      background: #0b5cf0 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 11px no-repeat;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f3f7fd] font-sans text-ink antialiased">
+
+  <!-- Overlay mobile -->
+  <div id="overlay" class="fixed inset-0 z-40 hidden bg-[#031238]/60 lg:hidden"></div>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside id="sidebar"
+         class="fixed inset-y-0 left-0 z-50 flex w-[268px] -translate-x-full flex-col overflow-y-auto bg-gradient-to-b from-[#0a3591] via-[#082a7b] to-[#051a4e] transition-transform duration-200 lg:translate-x-0">
+    <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_30%,rgba(255,255,255,.045)_48%,transparent_66%)]"></div>
+
+    <!-- Logo -->
+    <div class="relative flex h-[44px] shrink-0 items-center px-[32px] mt-[22px] mb-[27px]">
+      <svg class="h-[48px] w-[44px] shrink-0" viewBox="0 0 44 48" aria-hidden="true">
+        <polygon points="22,2 41,13 41,35 22,46 3,35 3,13" fill="#1d63f0"/>
+        <polygon points="22,2 41,13 22,24 3,13" fill="#3d88ff"/>
+        <polygon points="3,13 22,24 22,46 3,35" fill="#0b47c4"/>
+        <polygon points="41,13 22,24 22,46 41,35" fill="#1356d8"/>
+        <polygon points="22,13 32,19 32,31 22,37 12,31 12,19" fill="#0a2a78" opacity=".9"/>
+      </svg>
+      <span class="ml-[12px] text-[24px] font-medium tracking-tight text-white">NovaTech</span>
+      <i data-lucide="chevron-right" class="ml-auto h-[18px] w-[18px] text-[#3b6bd0]"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative space-y-[2px] px-[14px]">
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="house" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Tableau de bord</span>
+      </a>
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="shopping-cart" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Commandes</span>
+        <span class="ml-auto grid h-[24px] w-[24px] place-items-center rounded-full bg-[#1a62e8] text-[12px] font-bold text-white">12</span>
+      </a>
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="package" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Produits</span>
+      </a>
+      <a href="#" aria-current="page" class="flex h-[50px] items-center gap-[19px] rounded-[6px] bg-[#0a62f5] pl-[16px] pr-[9px] text-[14.5px] font-semibold text-white shadow-[0_4px_14px_rgba(10,98,245,.35)]">
+        <i data-lucide="user" class="h-[26px] w-[26px] fill-white text-white"></i>
+        <span>Clients</span>
+      </a>
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="bar-chart-3" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Rapports</span>
+      </a>
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="message-circle" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Messages</span>
+        <span class="ml-auto grid h-[24px] w-[24px] place-items-center rounded-full bg-[#1a62e8] text-[12px] font-bold text-white">3</span>
+      </a>
+      <a href="#" class="flex h-[50px] items-center gap-[19px] rounded-[6px] pl-[16px] pr-[9px] text-[14.5px] font-medium text-white/95 hover:bg-white/5">
+        <i data-lucide="settings" class="h-[26px] w-[26px] fill-white/90 text-white/90"></i>
+        <span>Paramètres</span>
+      </a>
+    </nav>
+
+    <!-- Carte Pro -->
+    <div class="relative mx-[22px] mb-[90px] mt-auto flex shrink-0 flex-col items-center rounded-[8px] border border-[#1d4ba6] bg-[#0b2f85]/80 px-[18px] pb-[22px] pt-[20px] text-center">
+      <i data-lucide="crown" class="h-[28px] w-[28px] fill-white text-white"></i>
+      <h3 class="mt-[8px] text-[15px] font-bold text-white">Passez à la version Pro</h3>
+      <p class="mt-[12px] text-[12.5px] leading-[20px] text-white/85">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+      <button type="button" class="mt-[21px] h-[43px] w-full rounded-[6px] bg-brand text-[14px] font-semibold text-white transition hover:bg-[#0a52d8]">Voir les offres</button>
+    </div>
+  </aside>
+
+  <!-- ===================== CONTENU ===================== -->
+  <div class="lg:pl-[268px]">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 flex h-[75px] items-center gap-3 border-b border-[#e9f0fa] bg-white px-4 shadow-[0_1px_6px_rgba(16,50,120,.05)] sm:px-[26px]">
+      <button id="menuBtn" type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-md text-brand hover:bg-soft lg:hidden" aria-label="Ouvrir le menu">
+        <i data-lucide="menu" class="h-6 w-6"></i>
+      </button>
+
+      <label class="flex h-[40px] w-full max-w-[574px] items-center gap-[14px] rounded-[8px] bg-[#e6eefb] px-[17px]">
+        <i data-lucide="search" class="h-[20px] w-[20px] shrink-0 text-brand"></i>
+        <input id="globalSearch" type="text" placeholder="Rechercher un client, un email, un numéro de téléphone..."
+               class="w-full bg-transparent text-[12.5px] text-ink outline-none placeholder:text-[#5f84cc]">
+      </label>
+
+      <div class="ml-auto flex items-center gap-[34px]">
+        <button type="button" class="relative text-brand" aria-label="Notifications">
+          <i data-lucide="bell" class="h-[27px] w-[27px] fill-brand/10"></i>
+          <span class="absolute -right-[7px] -top-[8px] grid h-[18px] w-[18px] place-items-center rounded-full bg-[#ef4444] text-[10px] font-bold text-white ring-2 ring-white">3</span>
+        </button>
+
+        <button type="button" class="flex items-center gap-[12px] text-left">
+          <span class="h-[46px] w-[46px] shrink-0 overflow-hidden rounded-full bg-[#7a4e33]" id="adminAvatar"></span>
+          <span class="hidden sm:block">
+            <span class="block text-[14.5px] font-bold leading-[18px] text-ink">Bidosessi G.</span>
+            <span class="block text-[13px] leading-[18px] text-link">Administrateur</span>
+          </span>
+          <i data-lucide="chevron-down" class="ml-[14px] hidden h-[20px] w-[20px] text-brand sm:block"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="px-4 pb-[36px] pt-[20px] sm:px-[25px]">
+
+      <!-- Titre + action -->
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-[18px]">
+          <div class="grid h-[48px] w-[48px] shrink-0 place-items-center rounded-[10px] bg-white shadow-[0_1px_5px_rgba(16,50,120,.1)]">
+            <i data-lucide="users" class="h-[30px] w-[30px] fill-brand text-brand"></i>
+          </div>
+          <div>
+            <h1 class="text-[27px] font-bold leading-[30px] text-ink">Clients</h1>
+            <p class="mt-[3px] text-[13.5px] text-link">Gérez vos clients et suivez leurs informations.</p>
+          </div>
+        </div>
+        <button type="button" class="flex h-[43px] w-[174px] items-center justify-center gap-[10px] rounded-[6px] bg-brand text-[13.5px] font-semibold text-white shadow-[0_4px_12px_rgba(11,92,240,.28)] transition hover:bg-[#0a52d8]">
+          <i data-lucide="plus" class="h-[18px] w-[18px]"></i>
+          Ajouter un client
+        </button>
+      </div>
+
+      <!-- Cartes statistiques -->
+      <section class="mt-[22px] grid grid-cols-1 gap-[15px] sm:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr_1.5fr]">
+        <article class="flex h-[126px] gap-[18px] rounded-[8px] bg-white px-[17px] py-[14px] shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+          <div class="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-[12px] bg-soft">
+            <i data-lucide="users" class="h-[28px] w-[28px] fill-brand text-brand"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="mt-[4px] text-[13px] font-semibold text-ink">Total des clients</p>
+            <p class="mt-[8px] text-[25px] font-extrabold leading-none text-ink">248</p>
+            <p class="mt-[10px] flex items-center gap-[3px] text-[12px] font-semibold text-[#16a34a]"><i data-lucide="arrow-up" class="h-[14px] w-[14px] stroke-[3]"></i>+12%</p>
+            <p class="mt-[3px] text-[10.5px] text-mute">par rapport au mois dernier</p>
+          </div>
+        </article>
+
+        <article class="flex h-[126px] gap-[18px] rounded-[8px] bg-white px-[17px] py-[14px] shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+          <div class="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-[12px] bg-soft">
+            <i data-lucide="user" class="h-[26px] w-[26px] fill-brand text-brand"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="mt-[4px] text-[13px] font-semibold text-ink">Nouveaux clients</p>
+            <p class="mt-[8px] text-[25px] font-extrabold leading-none text-ink">96</p>
+            <p class="mt-[10px] flex items-center gap-[3px] text-[12px] font-semibold text-[#16a34a]"><i data-lucide="arrow-up" class="h-[14px] w-[14px] stroke-[3]"></i>+20%</p>
+            <p class="mt-[3px] text-[10.5px] text-mute">par rapport au mois dernier</p>
+          </div>
+        </article>
+
+        <article class="flex h-[126px] gap-[18px] rounded-[8px] bg-white px-[17px] py-[14px] shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+          <div class="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-[12px] bg-soft">
+            <i data-lucide="shopping-cart" class="h-[26px] w-[26px] fill-brand text-brand"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="mt-[3px] text-[13px] font-semibold text-ink">Clients actifs</p>
+            <p class="mt-[8px] text-[25px] font-extrabold leading-none text-ink">221</p>
+            <p class="mt-[10px] flex items-center gap-[3px] text-[12px] font-semibold text-[#16a34a]"><i data-lucide="arrow-up" class="h-[14px] w-[14px] stroke-[3]"></i>+8%</p>
+            <p class="mt-[3px] text-[10.5px] text-mute">par rapport au mois dernier</p>
+          </div>
+        </article>
+
+        <article class="flex h-[126px] gap-[18px] rounded-[8px] bg-white px-[17px] py-[14px] shadow-[0_1px_4px_rgba(16,50,120,.07)] sm:col-span-2 xl:col-span-1">
+          <div class="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-[12px] bg-soft">
+            <i data-lucide="ban" class="h-[28px] w-[28px] text-brand"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="mt-[4px] text-[13px] font-semibold text-ink">Clients inactifs</p>
+            <p class="mt-[8px] text-[25px] font-extrabold leading-none text-ink">27</p>
+            <p class="mt-[10px] flex items-center gap-[3px] text-[12px] font-semibold text-[#ef4444]"><i data-lucide="arrow-down" class="h-[14px] w-[14px] stroke-[3]"></i>-5%</p>
+            <p class="mt-[3px] text-[10.5px] text-mute">par rapport au mois dernier</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Tableau + colonne de droite -->
+      <section class="mt-[18px] grid grid-cols-1 items-start gap-[17px] xl:grid-cols-[minmax(0,1fr)_258px]">
+
+        <!-- Carte tableau -->
+        <div class="rounded-[8px] bg-white shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+
+          <!-- Filtres -->
+          <div class="flex flex-wrap items-start gap-x-[18px] gap-y-3 px-[14px] pb-[22px] pt-[12px]">
+            <label class="mt-[5px] flex h-[40px] min-w-[220px] flex-1 items-center gap-[12px] rounded-[6px] border border-[#c9d8f0] bg-white px-[11px] focus-within:border-brand">
+              <i data-lucide="search" class="h-[20px] w-[20px] shrink-0 text-brand"></i>
+              <input id="tableSearch" type="text" placeholder="Rechercher un client par nom, email ou téléphone..."
+                     class="w-full bg-transparent text-[12.5px] text-ink outline-none placeholder:text-[#5f84cc]">
+            </label>
+
+            <div class="w-[155px]">
+              <label for="statusFilter" class="block text-[11.5px] leading-[14px] text-ink">Statut</label>
+              <div class="relative mt-[4px]">
+                <select id="statusFilter" class="h-[36px] w-full appearance-none rounded-[6px] border border-[#c9d8f0] bg-white pl-[11px] pr-8 text-[12.5px] text-link outline-none focus:border-brand">
+                  <option>Tous</option>
+                  <option>Actif</option>
+                  <option>En attente</option>
+                  <option>Inactif</option>
+                </select>
+                <i data-lucide="chevron-down" class="pointer-events-none absolute right-[10px] top-1/2 h-[16px] w-[16px] -translate-y-1/2 stroke-[2.5] text-ink"></i>
+              </div>
+            </div>
+
+            <div class="w-[166px]">
+              <label for="dateFilter" class="block text-[11.5px] leading-[14px] text-ink">Date d'inscription</label>
+              <div class="relative mt-[4px]">
+                <select id="dateFilter" class="h-[36px] w-full appearance-none rounded-[6px] border border-[#c9d8f0] bg-white pl-[11px] pr-8 text-[12.5px] text-link outline-none focus:border-brand">
+                  <option>Toutes les dates</option>
+                  <option>7 derniers jours</option>
+                  <option>30 derniers jours</option>
+                  <option>12 derniers mois</option>
+                </select>
+                <i data-lucide="calendar-sync" class="pointer-events-none absolute right-[10px] top-1/2 h-[16px] w-[16px] -translate-y-1/2 text-brand"></i>
+              </div>
+            </div>
+
+            <button type="button" class="mt-[10px] flex h-[36px] w-[84px] items-center justify-center gap-[7px] rounded-[6px] border border-[#c5d6f4] bg-soft text-[12.5px] font-medium text-link transition hover:bg-[#dbe8fc]">
+              <i data-lucide="filter" class="h-[16px] w-[16px]"></i>
+              Filtres
+            </button>
+          </div>
+
+          <!-- Tableau -->
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[944px] table-fixed border-collapse text-left">
+              <colgroup>
+                <col style="width:40px"><col style="width:155px"><col style="width:156px"><col style="width:131px">
+                <col style="width:100px"><col style="width:162px"><col style="width:127px"><col style="width:73px">
+              </colgroup>
+              <thead>
+                <tr class="h-[41px] border-b border-line text-[12.5px] font-semibold text-ink">
+                  <th class="pl-[16px] font-semibold"><input id="checkAll" type="checkbox" class="cb" aria-label="Tout sélectionner"></th>
+                  <th class="pl-[14px] font-semibold">Client</th>
+                  <th class="font-semibold">Email</th>
+                  <th class="font-semibold">Téléphone</th>
+                  <th class="font-semibold">Commandes</th>
+                  <th class="font-semibold">Dernière commande</th>
+                  <th class="font-semibold">Statut</th>
+                  <th class="font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex flex-wrap items-center justify-between gap-3 px-[13px] pb-[14px] pt-[27px]">
+            <p id="countText" class="text-[11px] text-mute">10 sur 248 clients</p>
+            <nav id="pager" class="flex items-center gap-[4px] text-[12px] font-medium text-ink" aria-label="Pagination">
+              <button type="button" data-nav="prev" class="grid h-[32px] w-[32px] place-items-center rounded-[6px] bg-soft text-[#9bb6ea]" aria-label="Page précédente"><i data-lucide="chevron-left" class="h-[16px] w-[16px] stroke-[2.5]"></i></button>
+              <button type="button" data-page="1" class="pg h-[32px] w-[30px] rounded-[6px]">1</button>
+              <button type="button" data-page="2" class="pg h-[32px] w-[30px] rounded-[6px]">2</button>
+              <button type="button" data-page="3" class="pg h-[32px] w-[30px] rounded-[6px]">3</button>
+              <button type="button" data-page="4" class="pg h-[32px] w-[30px] rounded-[6px]">4</button>
+              <button type="button" data-page="5" class="pg h-[32px] w-[30px] rounded-[6px]">5</button>
+              <span class="grid h-[32px] w-[30px] place-items-center text-ink">…</span>
+              <button type="button" data-page="25" class="pg h-[32px] w-[34px] rounded-[6px]">25</button>
+              <button type="button" data-nav="next" class="ml-[4px] grid h-[32px] w-[32px] place-items-center rounded-[6px] border border-brand text-brand hover:bg-soft" aria-label="Page suivante"><i data-lucide="chevron-right" class="h-[16px] w-[16px] stroke-[2.5]"></i></button>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Colonne de droite -->
+        <div class="grid grid-cols-1 gap-[17px] md:grid-cols-2 xl:grid-cols-1">
+
+          <!-- Profil client sélectionné -->
+          <div class="rounded-[8px] bg-white px-[17px] pb-[17px] pt-[15px] shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+            <h2 class="text-[15px] font-bold leading-[18px] text-ink">Profil client sélectionné</h2>
+
+            <div class="mt-[14px] flex items-center gap-[14px]">
+              <div class="relative h-[62px] w-[62px] shrink-0">
+                <div id="pfAvatar" class="h-full w-full overflow-hidden rounded-full"></div>
+                <span class="absolute bottom-[1px] right-[1px] h-[11px] w-[11px] rounded-full bg-[#16a34a] ring-2 ring-white"></span>
+              </div>
+              <div class="min-w-0">
+                <p id="pfName" class="text-[17px] font-bold leading-[20px] text-ink">Amine D.</p>
+                <p id="pfEmail" class="mt-[5px] truncate text-[11px] text-link">amine.d@gmail.com</p>
+                <p class="mt-[4px] flex items-center gap-[6px] text-[11px] text-link"><span id="pfDot" class="h-[7px] w-[7px] rounded-full bg-[#16a34a]"></span><span id="pfStatus">Actif</span></p>
+              </div>
+            </div>
+
+            <button type="button" class="mt-[19px] flex h-[37px] w-full items-center justify-center gap-[9px] rounded-[5px] bg-brand text-[12.5px] font-semibold text-white transition hover:bg-[#0a52d8]">
+              <i data-lucide="plus" class="h-[16px] w-[16px]"></i>
+              Voir le profil complet
+            </button>
+
+            <div class="mt-[22px] border-t border-line pt-[10px]">
+              <h3 class="text-[14.5px] font-bold leading-[18px] text-ink">Détails rapides</h3>
+              <ul class="mt-[11px]">
+                <li class="flex h-[49px] gap-[14px]">
+                  <i data-lucide="phone" class="mt-[6px] h-[22px] w-[22px] shrink-0 text-brand"></i>
+                  <div><p class="text-[11.5px] leading-[15px] text-link">Téléphone</p><p id="pfPhone" class="mt-[3px] text-[12.5px] font-medium text-ink">+229 62 12 34 56</p></div>
+                </li>
+                <li class="flex h-[49px] gap-[14px]">
+                  <i data-lucide="shopping-cart" class="mt-[6px] h-[22px] w-[22px] shrink-0 fill-brand text-brand"></i>
+                  <div><p class="text-[11.5px] leading-[15px] text-link">Total des commandes</p><p id="pfOrders" class="mt-[3px] text-[12.5px] font-medium text-ink">5</p></div>
+                </li>
+                <li class="flex h-[49px] gap-[14px]">
+                  <i data-lucide="wallet" class="mt-[6px] h-[22px] w-[22px] shrink-0 text-brand"></i>
+                  <div><p class="text-[11.5px] leading-[15px] text-link">Montant dépensé</p><p id="pfSpent" class="mt-[3px] text-[12.5px] font-medium text-ink">342 500 FCFA</p></div>
+                </li>
+                <li class="flex h-[49px] gap-[14px]">
+                  <i data-lucide="calendar-days" class="mt-[6px] h-[22px] w-[22px] shrink-0 text-brand"></i>
+                  <div><p class="text-[11.5px] leading-[15px] text-link">Dernière commande</p><p id="pfLast" class="mt-[3px] text-[12.5px] font-medium text-ink">18/11/2025</p></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Statut des clients -->
+          <div class="rounded-[8px] bg-white px-[17px] pb-[24px] pt-[15px] shadow-[0_1px_4px_rgba(16,50,120,.07)]">
+            <h2 class="text-[14.5px] font-bold leading-[18px] text-ink">Statut des clients</h2>
+
+            <div class="mt-[25px] flex items-center gap-[13px]">
+              <div class="relative h-[108px] w-[108px] shrink-0">
+                <svg viewBox="0 0 108 108" class="h-full w-full -rotate-90" aria-hidden="true">
+                  <circle cx="54" cy="54" r="47" fill="none" stroke="#16a34a" stroke-width="13" stroke-dasharray="261.3 295.31" stroke-dashoffset="0"/>
+                  <circle cx="54" cy="54" r="47" fill="none" stroke="#ef4444" stroke-width="13" stroke-dasharray="10.3 295.31" stroke-dashoffset="-264.3"/>
+                  <circle cx="54" cy="54" r="47" fill="none" stroke="#f5a623" stroke-width="13" stroke-dasharray="19.2 295.31" stroke-dashoffset="-276.1"/>
+                </svg>
+                <div class="absolute inset-0 grid place-content-center text-center">
+                  <span class="text-[16px] font-extrabold leading-[18px] text-ink">248</span>
+                  <span class="text-[11px] leading-[14px] text-ink">clients</span>
+                </div>
+              </div>
+
+              <ul class="flex-1 space-y-[12px] text-[10px]">
+                <li class="flex items-center gap-[8px] text-ink"><span class="h-[8px] w-[8px] rounded-full bg-[#16a34a]"></span>Actifs<span class="ml-auto text-mute">89% (221)</span></li>
+                <li class="flex items-center gap-[8px] text-ink"><span class="h-[8px] w-[8px] rounded-full bg-[#f5a623]"></span>En attente<span class="ml-auto text-mute">7% (18)</span></li>
+                <li class="flex items-center gap-[8px] text-ink"><span class="h-[8px] w-[8px] rounded-full bg-[#ef4444]"></span>Inactifs<span class="ml-auto text-mute">4% (9)</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    /* ---------- Données de démonstration ---------- */
+    const clients = [
+      { n: 'Amine D.',   e: 'amine.d@gmail.com',   p: '+229 62 12 34 56', c: 5, d: '18/11/2025', t: '14:32', s: 'Actif',      spent: '342 500 FCFA', skin: '#8a5a3c', f: false },
+      { n: 'Koffi S.',   e: 'koffi.s@gmail.com',   p: '+229 66 98 76 54', c: 3, d: '16/11/2025', t: '10:21', s: 'Actif',      spent: '198 000 FCFA', skin: '#6e4630', f: false },
+      { n: 'Yao M.',     e: 'yao.m@gmail.com',     p: '+229 97 45 32 10', c: 8, d: '15/11/2025', t: '16:45', s: 'Actif',      spent: '512 750 FCFA', skin: '#7b4d33', f: false },
+      { n: 'Fatou B.',   e: 'fatou.b@gmail.com',   p: '+229 95 22 11 33', c: 2, d: '12/11/2025', t: '09:18', s: 'Actif',      spent: '87 500 FCFA',  skin: '#8d5b3d', f: true  },
+      { n: 'Sika T.',    e: 'sika.t@gmail.com',    p: '+229 67 88 77 66', c: 4, d: '10/11/2025', t: '17:02', s: 'Actif',      spent: '164 200 FCFA', skin: '#6b422c', f: true  },
+      { n: 'Rachid A.',  e: 'rachid.a@gmail.com',  p: '+229 96 33 55 44', c: 6, d: '08/11/2025', t: '11:37', s: 'Actif',      spent: '421 300 FCFA', skin: '#85563a', f: false },
+      { n: 'Mariama K.', e: 'mariama.k@gmail.com', p: '+229 91 02 03 04', c: 1, d: '05/11/2025', t: '15:26', s: 'En attente', spent: '25 000 FCFA',  skin: '#7a4a31', f: true  },
+      { n: 'Diallo M.',  e: 'diallo.m@gmail.com',  p: '+229 93 76 54 32', c: 3, d: '02/11/2025', t: '12:14', s: 'Actif',      spent: '143 900 FCFA', skin: '#6a432d', f: false },
+      { n: 'El Hadj B.', e: 'elhadj.b@gmail.com',  p: '+229 98 11 22 33', c: 7, d: '29/10/2025', t: '18:05', s: 'Actif',      spent: '468 600 FCFA', skin: '#8b5a3b', f: false },
+      { n: 'Aissata S.', e: 'aissata.s@gmail.com', p: '+229 66 44 55 77', c: 2, d: '26/10/2025', t: '09:42', s: 'Actif',      spent: '96 800 FCFA',  skin: '#91603f', f: true  }
+    ];
+
+    /* Avatar de remplacement (silhouette). Pour utiliser de vraies photos :
+       remplacer le contenu par <img src="avatars/amine.jpg" class="h-full w-full object-cover" alt=""> */
+    function avatar(c) {
+      const hair = c.f
+        ? '<ellipse cx="16" cy="14" rx="8.4" ry="9.4" fill="#17110e"/>'
+        : '<path d="M9.6 12.5a6.4 6.4 0 0 1 12.8 0c-1.6-1.8-3.6-2.6-6.4-2.6s-4.8.8-6.4 2.6z" fill="#17110e"/>';
+      const face = `<ellipse cx="16" cy="14" rx="5.4" ry="6.2" fill="${c.skin}"/>`;
+      const hairTop = c.f ? '<path d="M10.4 12.4a5.8 5.8 0 0 1 11.2 0c-1.8-1.4-3.6-2-5.6-2s-3.8.6-5.6 2z" fill="#17110e"/>' : '';
+      return `<svg viewBox="0 0 32 32" class="h-full w-full" aria-hidden="true">
+        <rect width="32" height="32" fill="#c9b6a4"/>
+        ${hair}
+        <path d="M3 32c.6-6.2 5.4-9.2 13-9.2S28.4 25.8 29 32z" fill="#1f2937"/>
+        <rect x="13.6" y="18.4" width="4.8" height="5" fill="${c.skin}"/>
+        ${face}${hairTop}
+      </svg>`;
+    }
+
+    function badge(s) {
+      const ok = s === 'Actif';
+      const wait = s === 'En attente';
+      const bg  = ok ? 'bg-[#d9f5e3]' : wait ? 'bg-[#fff0d9]' : 'bg-[#fde2e2]';
+      const txt = ok ? 'text-[#15803d]' : wait ? 'text-[#ea8a0a]' : 'text-[#dc2626]';
+      const dot = ok ? 'bg-[#16a34a]'   : wait ? 'bg-[#f59e0b]'   : 'bg-[#ef4444]';
+      return `<span class="inline-flex h-[22px] items-center gap-[6px] rounded-full px-[9px] text-[11.5px] font-medium ${bg} ${txt}"><span class="h-[7px] w-[7px] rounded-full ${dot}"></span>${s}</span>`;
+    }
+
+    /* ---------- Rendu du tableau ---------- */
+    const tbody = document.getElementById('rows');
+    let visible = clients.slice();
+
+    function renderRows() {
+      tbody.innerHTML = visible.map((c, i) => `
+        <tr data-i="${i}" class="h-[47.5px] cursor-pointer border-b border-line hover:bg-[#f7faff]">
+          <td class="pl-[16px]"><input type="checkbox" class="cb row-cb" aria-label="Sélectionner ${c.n}"></td>
+          <td class="pl-[9px]">
+            <div class="flex items-center gap-[14px]">
+              <span class="h-[32px] w-[32px] shrink-0 overflow-hidden rounded-full">${avatar(c)}</span>
+              <span class="truncate text-[13px] font-bold text-[#0b1f4d]">${c.n}</span>
+            </div>
+          </td>
+          <td class="truncate pr-2 text-[12.5px] text-link">${c.e}</td>
+          <td class="text-[12.5px] text-ink">${c.p}</td>
+          <td class="pl-[10px] text-[12.5px] text-ink">${c.c}</td>
+          <td>
+            <p class="text-[12.5px] leading-[15px] text-ink">${c.d}</p>
+            <p class="text-[10.5px] leading-[13px] text-mute">${c.t}</p>
+          </td>
+          <td>${badge(c.s)}</td>
+          <td class="pl-[28px]">
+            <button type="button" class="grid h-8 w-8 place-items-center text-brand" aria-label="Actions pour ${c.n}"><i data-lucide="ellipsis-vertical" class="h-[20px] w-[20px] stroke-[3.2]"></i></button>
+          </td>
+        </tr>`).join('');
+      document.getElementById('countText').textContent = visible.length + ' sur 248 clients';
+      document.getElementById('checkAll').checked = false;
+      lucide.createIcons();
+    }
+
+    /* ---------- Profil sélectionné ---------- */
+    function selectClient(c) {
+      document.getElementById('pfAvatar').innerHTML = avatar(c);
+      document.getElementById('pfName').textContent = c.n;
+      document.getElementById('pfEmail').textContent = c.e;
+      document.getElementById('pfStatus').textContent = c.s;
+      document.getElementById('pfPhone').textContent = c.p;
+      document.getElementById('pfOrders').textContent = c.c;
+      document.getElementById('pfSpent').textContent = c.spent;
+      document.getElementById('pfLast').textContent = c.d;
+      document.getElementById('pfDot').className = 'h-[7px] w-[7px] rounded-full ' +
+        (c.s === 'Actif' ? 'bg-[#16a34a]' : c.s === 'En attente' ? 'bg-[#f59e0b]' : 'bg-[#ef4444]');
+    }
+
+    tbody.addEventListener('click', (e) => {
+      if (e.target.closest('.cb')) return;
+      const tr = e.target.closest('tr');
+      if (tr) selectClient(visible[+tr.dataset.i]);
+    });
+
+    document.getElementById('checkAll').addEventListener('change', (e) => {
+      tbody.querySelectorAll('.row-cb').forEach(cb => cb.checked = e.target.checked);
+    });
+
+    /* ---------- Recherche + filtre statut ---------- */
+    const tableSearch = document.getElementById('tableSearch');
+    const globalSearch = document.getElementById('globalSearch');
+    const statusFilter = document.getElementById('statusFilter');
+
+    function applyFilters() {
+      const q = tableSearch.value.trim().toLowerCase();
+      const st = statusFilter.value;
+      visible = clients.filter(c =>
+        (st === 'Tous' || c.s === st) &&
+        (!q || [c.n, c.e, c.p].some(v => v.toLowerCase().includes(q)))
+      );
+      renderRows();
+    }
+    tableSearch.addEventListener('input', () => { globalSearch.value = tableSearch.value; applyFilters(); });
+    globalSearch.addEventListener('input', () => { tableSearch.value = globalSearch.value; applyFilters(); });
+    statusFilter.addEventListener('change', applyFilters);
+
+    /* ---------- Pagination (état visuel) ---------- */
+    const pages = [1, 2, 3, 4, 5, 25];
+    let currentPage = 1;
+    function paintPager() {
+      document.querySelectorAll('#pager .pg').forEach(b => {
+        const active = +b.dataset.page === currentPage;
+        b.className = 'pg h-[32px] rounded-[6px] ' + (b.dataset.page === '25' ? 'w-[34px] ' : 'w-[30px] ') +
+          (active ? 'bg-brand text-white font-semibold' : 'text-ink hover:bg-soft');
+      });
+      const prev = document.querySelector('[data-nav="prev"]');
+      prev.className = 'grid h-[32px] w-[32px] place-items-center rounded-[6px] ' +
+        (currentPage === 1 ? 'bg-soft text-[#9bb6ea]' : 'border border-brand text-brand hover:bg-soft');
+    }
+    document.getElementById('pager').addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.page) currentPage = +b.dataset.page;
+      if (b.dataset.nav === 'next') currentPage = pages[Math.min(pages.indexOf(currentPage) + 1, pages.length - 1)];
+      if (b.dataset.nav === 'prev') currentPage = pages[Math.max(pages.indexOf(currentPage) - 1, 0)];
+      paintPager();
+    });
+
+    /* ---------- Menu mobile ---------- */
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    function toggleMenu(open) {
+      sidebar.classList.toggle('-translate-x-full', !open);
+      overlay.classList.toggle('hidden', !open);
+    }
+    document.getElementById('menuBtn').addEventListener('click', () => toggleMenu(true));
+    overlay.addEventListener('click', () => toggleMenu(false));
+
+    /* ---------- Initialisation ---------- */
+    document.getElementById('adminAvatar').innerHTML = avatar({ skin: '#7a4e33', f: false });
+    renderRows();
+    selectClient(clients[0]);
+    paintPager();
+    lucide.createIcons();
+  </script>
+</body>
+</html>

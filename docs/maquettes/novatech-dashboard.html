@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech – Tableau de bord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}</script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="bg-[#f3f7ff] font-sans text-[#0b2a6b] antialiased">
+
+<!-- ============ SIDEBAR ============ -->
+<div id="ov" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+<aside id="sb" class="fixed inset-y-0 left-0 z-40 flex w-[270px] -translate-x-full flex-col bg-gradient-to-b from-[#0b3c9f] to-[#062772] transition-transform lg:translate-x-0">
+  <div class="flex h-[90px] items-center justify-between px-[34px]">
+    <div class="flex items-center gap-3">
+      <svg width="38" height="42" viewBox="0 0 38 42" fill="none"><path d="M19 1 36 10v20L19 41 2 30V10z" fill="#1f6bff"/><path d="M19 1 36 10 19 19 2 10z" fill="#6aa5ff"/><path d="M19 19v22L2 30V10z" fill="#2a78ff"/><path d="M19 19 36 10v20L19 41z" fill="#0f4fd6"/><path d="M12 14v13l7 4 7-4V14" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      <span class="text-[22px] font-bold text-white">NovaTech</span>
+    </div>
+    <i data-lucide="chevron-right" class="h-5 w-5 text-white/70"></i>
+  </div>
+  <nav id="nav" class="mt-[11px] space-y-[2px] px-5"></nav>
+  <div class="mx-5 mb-[58px] mt-auto rounded-lg border border-white/15 bg-white/[0.04] px-[22px] pb-[24px] pt-[22px] text-center">
+    <i data-lucide="crown" class="mx-auto h-[22px] w-[22px] fill-white text-white"></i>
+    <p class="mt-3 text-[13.5px] font-semibold text-white">Passez à la version Pro</p>
+    <p class="mt-3 text-[12px] leading-[18px] text-white/80">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+    <button class="mt-[22px] h-9 w-full rounded-lg bg-[#1f6bff] text-[13px] font-semibold text-white shadow-lg shadow-blue-900/30 hover:bg-[#3a7dff]">Voir les offres</button>
+  </div>
+</aside>
+
+<div class="lg:ml-[270px]">
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-20 flex h-[77px] items-center justify-between gap-3 bg-white px-4 shadow-[0_1px_8px_rgba(20,60,160,.06)] sm:px-[30px]">
+  <div class="flex flex-1 items-center gap-3">
+    <button id="burger" class="lg:hidden"><i data-lucide="menu" class="h-6 w-6"></i></button>
+    <label class="flex h-[38px] w-full max-w-[435px] items-center gap-3 rounded-lg bg-[#eaf1fd] px-4 text-[#5b78b5]">
+      <i data-lucide="search" class="h-[20px] w-[20px] shrink-0"></i>
+      <input id="q" type="text" placeholder="Rechercher quelque chose..." class="w-full bg-transparent text-[14px] text-[#0b2a6b] outline-none placeholder:text-[#7f98c9]">
+    </label>
+  </div>
+  <div class="flex items-center gap-4 sm:gap-6">
+    <button class="relative text-[#2f6fe8]"><i data-lucide="bell" class="h-[26px] w-[26px]"></i><span class="absolute -right-1.5 -top-1.5 grid h-[18px] w-[18px] place-items-center rounded-full bg-[#ef4444] text-[10px] font-bold text-white ring-2 ring-white">3</span></button>
+    <div class="flex items-center gap-3">
+      <span class="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#4a3a30] to-[#1d1511] text-[14px] font-semibold text-white">BG</span>
+      <div class="hidden leading-[21px] sm:block"><p class="text-[15px] font-semibold">Bidosessi G.</p><p class="text-[14px] text-[#5b78b5]">Administrateur</p></div>
+      <i data-lucide="chevron-down" class="ml-2 h-4 w-4 text-[#5b78b5]"></i>
+    </div>
+  </div>
+</header>
+
+<main class="px-4 pb-[33px] pt-[22px] sm:px-[25px]">
+  <!-- Titre + date -->
+  <div class="flex flex-wrap items-start justify-between gap-4 px-[5px]">
+    <div>
+      <h1 class="text-[28px] font-bold leading-[34px]">Bonjour, Bidosessi 👋</h1>
+      <p class="mt-1.5 text-[16px] text-[#3f64b8]">Voici un aperçu de votre activité aujourd'hui.</p>
+    </div>
+    <button class="flex h-[45px] items-center gap-3 rounded-lg border border-[#e3ebf8] bg-white px-4 text-[14.5px] font-semibold shadow-[0_2px_8px_rgba(20,60,160,.05)]">
+      <i data-lucide="calendar" class="h-5 w-5"></i>Lundi 20 octobre 2025<i data-lucide="chevron-down" class="ml-6 h-4 w-4"></i>
+    </button>
+  </div>
+
+  <!-- Cartes statistiques -->
+  <section id="stats" class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4"></section>
+
+  <!-- Graphique + répartition -->
+  <section class="mt-[19px] grid gap-[19px] xl:grid-cols-[727fr_469fr]">
+    <div class="rounded-xl bg-white px-6 pb-4 pt-[19px] shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+      <div class="flex h-[29px] items-center justify-between">
+        <h2 class="text-[17px] font-bold">Évolution des revenus</h2>
+        <div id="tabs" class="flex h-[29px] overflow-hidden rounded-md border border-[#dfe8f7] text-[12px] font-medium text-[#5b78b5]">
+          <button class="w-[46px]">7J</button><button class="w-[44px] rounded bg-[#1f6bff] font-semibold text-white">30J</button><button class="w-[52px]">3M</button><button class="w-[46px]">1A</button>
+        </div>
+      </div>
+      <div class="mt-[11px] overflow-x-auto"><svg viewBox="0 0 680 215" class="min-w-[560px] w-full" fill="none">
+        <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b82f6" stop-opacity=".38"/><stop offset="1" stop-color="#3b82f6" stop-opacity=".02"/></linearGradient></defs>
+        <g id="grid" font-size="11.5" fill="#6f87b8"></g>
+        <path id="area" fill="url(#ga)"/><path id="line" stroke="#1f6bff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="666" cy="47" r="4.5" fill="#1f6bff" stroke="#fff" stroke-width="1.5"/>
+      </svg></div>
+    </div>
+
+    <div class="rounded-xl bg-white px-[22px] pb-4 pt-[19px] shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+      <h2 class="flex h-[29px] items-center text-[17px] font-bold">Répartition des ventes</h2>
+      <div class="mt-[19px] flex flex-wrap items-start gap-x-8 gap-y-4">
+        <div class="relative ml-1 h-[188px] w-[188px] shrink-0">
+          <svg id="donut" viewBox="0 0 190 190" class="h-full w-full -rotate-90" fill="none"></svg>
+          <div class="absolute inset-0 grid place-items-center text-center text-[17px] font-semibold leading-[24px]"><span>1 250 000<br>FCFA</span></div>
+        </div>
+        <ul id="legend" class="mt-[9px] flex min-w-[190px] flex-1 flex-col"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commandes + activité + promo -->
+  <section class="mt-5 grid gap-[19px] lg:grid-cols-2 xl:grid-cols-[466fr_373fr_338fr]">
+    <div class="rounded-xl bg-white px-[18px] pb-4 pt-[14px] shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+      <div class="flex h-[22px] items-center justify-between"><h2 class="text-[15px] font-bold">Commandes récentes</h2><a href="#" class="flex items-center gap-1.5 text-[11.5px] font-medium text-[#1f6bff]">Voir tout <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a></div>
+      <div class="overflow-x-auto"><div class="min-w-[430px]">
+        <div class="mt-[7px] grid h-7 grid-cols-[116px_141px_81px_1fr] items-center rounded bg-[#f3f7ff] text-[11px] font-semibold"><span>Client</span><span>Produit</span><span>Montant</span><span>Statut</span></div>
+        <div id="rows"></div>
+      </div></div>
+    </div>
+
+    <div class="rounded-xl bg-white px-[19px] pb-4 pt-[14px] shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+      <h2 class="flex h-[22px] items-center text-[15px] font-bold">Activité récente</h2>
+      <ul id="acts" class="mt-2"></ul>
+    </div>
+
+    <div class="relative mt-[7px] min-h-[303px] overflow-hidden rounded-xl bg-gradient-to-br from-[#2a6cf0] via-[#1553d6] to-[#0b3aa8] p-[22px] pt-6 text-white shadow-[0_2px_12px_rgba(20,60,160,.15)] lg:col-span-2 xl:col-span-1">
+      <svg class="absolute -right-10 -top-16 opacity-20" width="260" height="260"><circle cx="130" cy="130" r="120" stroke="#fff" stroke-width="1" fill="none"/><circle cx="130" cy="130" r="80" stroke="#fff" stroke-width="1" fill="none"/></svg>
+      <span class="relative grid h-[34px] w-[34px] place-items-center rounded-lg bg-white/20"><i data-lucide="rocket" class="h-[18px] w-[18px] fill-white text-white"></i></span>
+      <h3 class="relative mt-[14px] max-w-[260px] text-[19px] font-bold leading-[23px]">Faites passer votre business au niveau supérieur</h3>
+      <p class="relative mt-[18px] max-w-[220px] text-[12.5px] leading-[20px] text-white/90">Découvrez nos outils puissants pour gagner en productivité et en visibilité.</p>
+      <button class="relative mt-[26px] flex h-10 items-center gap-3 rounded-lg bg-white px-[18px] text-[14px] font-semibold text-[#1553d6]">Découvrir <i data-lucide="arrow-right" class="h-4 w-4"></i></button>
+      <svg id="bars" class="absolute bottom-0 right-3 h-[190px] w-[160px]" viewBox="0 0 160 190"></svg>
+    </div>
+  </section>
+</main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const av=(i,s,c)=>`<span class="grid shrink-0 place-items-center rounded-full font-semibold text-white" style="width:${s}px;height:${s}px;font-size:${s*.36}px;background:linear-gradient(135deg,${c},#2b1c15)">${i}</span>`;
+
+// Navigation
+const nav=[['home','Tableau de bord'],['shopping-cart','Commandes','12'],['box','Produits'],['user','Clients'],['bar-chart-3','Rapports'],['message-circle','Messages','3'],['settings','Paramètres']];
+$('#nav').innerHTML=nav.map((n,i)=>`<a href="#" class="flex h-[51px] items-center gap-4 rounded-lg px-4 text-[14.5px] font-medium ${i?'text-[#d6e2ff] hover:bg-white/10':'bg-[#1f6bff] font-semibold text-white shadow-lg shadow-blue-900/30'}"><i data-lucide="${n[0]}" class="h-[23px] w-[23px] ${i&&n[0]!='settings'?'fill-current text-[#9fbaf0]':n[0]=='settings'?'text-[#9fbaf0]':'fill-white'}"></i><span class="flex-1">${n[1]}</span>${n[2]?`<span class="grid h-[22px] w-[22px] place-items-center rounded-full text-[11px] font-semibold text-white ${n[1]=='Messages'?'bg-[#1f6bff]':'bg-[#8fb0ee]'}">${n[2]}</span>`:''}</a>`).join('');
+
+// Lissage de courbe
+function sm(p){let d=`M${p[0]}`;for(let i=0;i<p.length-1;i++){const a=p[i-1]||p[i],b=p[i],c=p[i+1],e=p[i+2]||c;d+=`C${b[0]+(c[0]-a[0])/6},${b[1]+(c[1]-a[1])/6} ${c[0]-(e[0]-b[0])/6},${c[1]-(e[1]-b[1])/6} ${c[0]},${c[1]}`}return d}
+
+// Cartes statistiques
+const st=[['wallet','#e3eeff','#1f6bff','Revenus totaux','1 250 000 FCFA','+12%','#2f6fe8',[24,22,23,16,17,9,3]],['shopping-cart','#e3eeff','#1f6bff','Commandes','48','+8%','#1f6bff',[22,16,22,12,18,8,6]],['users','#ece6fb','#6c3be0','Nouveaux clients','32','+20%','#2f6fe8',[24,16,18,14,18,10,6]],['box','#dff7ef','#10b89a','Produits en ligne','120','+5%','#10b89a',[22,14,18,10,16,6,8]]];
+$('#stats').innerHTML=st.map(s=>{const p=s[7].map((y,i)=>[i*56/6,y]),d=sm(p);return `<div class="h-[165px] rounded-xl bg-white p-[19px] shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+<div class="flex items-center gap-[18px]"><span class="grid h-[46px] w-[46px] place-items-center rounded-xl" style="background:${s[1]};color:${s[2]}"><i data-lucide="${s[0]}" class="h-6 w-6 fill-current"></i></span><span class="text-[14px]">${s[3]}</span></div>
+<p class="mt-[9px] text-[22px] font-bold leading-7">${s[4]}</p>
+<div class="mt-2 flex items-center justify-between"><span class="flex items-center gap-1.5 text-[13.5px] font-semibold text-[#0a9d6b]"><i data-lucide="arrow-up" class="h-4 w-4"></i>${s[5]}</span>
+<svg width="56" height="28" viewBox="0 0 56 28" fill="none" style="color:${s[6]}"><path d="${d}L56,28L0,28Z" fill="currentColor" opacity=".13"/><path d="${d}" stroke="currentColor" stroke-width="2"/></svg></div>
+<p class="mt-1 text-[11px] text-[#6f7f9f]">par rapport au mois dernier</p></div>`}).join('');
+
+// Graphique des revenus
+const g=[['2M',13],['1,5M',54],['1M',95],['500k',136],['0',178]];
+const xl=['21/09','24/09','27/09','30/09','03/10','06/10','09/10','12/10','15/10','18/10','20/10'],xp=[48,109,169,230,291,355,417,480,542,604,666];
+$('#grid').innerHTML=g.map(a=>`<text x="27" y="${a[1]+4}" text-anchor="end">${a[0]}</text><line x1="47" x2="667" y1="${a[1]}" y2="${a[1]}" stroke="#e6edf9"/>`).join('')+xp.map((x,i)=>`<line x1="${x}" x2="${x}" y1="13" y2="178" stroke="#eef3fb"/><text x="${x}" y="206" text-anchor="middle">${xl[i]}</text>`).join('');
+const cp=[[47,146],[79,118],[113,132],[141,130],[168,118],[196,120],[226,105],[250,87],[276,108],[301,101],[321,111],[346,90],[371,80],[397,73],[421,95],[446,90],[476,98],[511,108],[543,90],[574,67],[611,82],[641,65],[666,47]],cd=sm(cp);
+$('#line').setAttribute('d',cd);$('#area').setAttribute('d',cd+'L666,178L47,178Z');
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...$('#tabs').children].forEach(x=>x.className=x==b?'w-[44px] rounded bg-[#1f6bff] font-semibold text-white':'w-[46px]')});
+
+// Donut + légende
+const dn=[['Électronique',35,'#1f6bff'],['Mode',25,'#6c3be0'],['Maison & déco',15,'#10b89a'],['Beauté & santé',12,'#fbb83a'],['Autres',13,'#c3d0ea']];let c=0;
+$('#donut').innerHTML=dn.map(s=>{const o=`<circle cx="95" cy="95" r="77.5" pathLength="100" stroke="${s[2]}" stroke-width="31" stroke-dasharray="${s[1]-.7} ${100-s[1]+.7}" stroke-dashoffset="${-c}"/>`;c+=s[1];return o}).join('');
+$('#legend').innerHTML=dn.map(s=>`<li class="flex h-[41px] items-center gap-4 text-[13.5px]"><span class="h-[13px] w-[13px] rounded-full" style="background:${s[2]}"></span><span class="flex-1">${s[0]}</span><b class="font-semibold">${s[1]}%</b></li>`).join('');
+
+// Commandes récentes
+const bd={'Livrée':'bg-[#dcf6ea] text-[#0f9d6b]','En cours':'bg-[#e1edff] text-[#1f6bff]','En préparation':'bg-[#fff0d9] text-[#e08a00]'};
+const od=[['AD','Aminata D.','Casque Bluetooth','45 000 FCFA','Livrée','#a8643f'],['KS','Koffi S.','T-shirt homme','12 500 FCFA','En cours','#b9803f'],['ST','Sika T.','Sac à main','28 000 FCFA','En cours','#7a4a32'],['YM','Yao M.','Montre connectée','75 000 FCFA','Livrée','#8a5a3c'],['FB','Fati B.','Chaussures','32 000 FCFA','En préparation','#a05a46']];
+$('#rows').innerHTML=od.map(r=>`<div data-t="${r.join(' ').toLowerCase()}" class="grid h-[43px] grid-cols-[116px_141px_81px_1fr] items-center border-b border-[#eef2f9] text-[11px] last:border-0"><span class="flex items-center gap-3 pl-[-4px]">${av(r[0],28,r[5])}${r[1]}</span><span>${r[2]}</span><span>${r[3]}</span><span><i class="rounded-full px-2.5 py-1 text-[10.5px] font-semibold not-italic ${bd[r[4]]}">${r[4]}</i></span></div>`).join('');
+$('#q').addEventListener('input',e=>document.querySelectorAll('#rows [data-t]').forEach(r=>r.style.display=r.dataset.t.includes(e.target.value.toLowerCase())?'':'none'));
+
+// Activité récente
+const ac=[['shopping-cart','#e3eeff','#1f6bff','Nouvelle commande #4587','Aminata D. a passé une commande','Il y a 12 min'],['wallet','#dff7ef','#10b89a','Paiement reçu','75 000 FCFA de Yao M.','Il y a 48 min'],['user','#ece6fb','#6c3be0','Nouveau client inscrit','Kouassi A. s\'est inscrit sur votre site','Il y a 2 h'],['box','#e3eeff','#1f6bff','Produit ajouté','T-shirt femme a été ajouté au catalogue','Il y a 3 h'],['message-circle','#e3eeff','#1f6bff','Message client','Sika T. vous a envoyé un message','Il y a 5 h']];
+$('#acts').innerHTML=ac.map(a=>`<li class="flex h-[51px] items-start gap-3"><span class="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-full" style="background:${a[1]};color:${a[2]}"><i data-lucide="${a[0]}" class="h-[17px] w-[17px] fill-current"></i></span><div class="min-w-0 flex-1"><p class="text-[11.5px] font-semibold leading-4">${a[3]}</p><p class="mt-[3px] truncate text-[10.5px] text-[#6f7f9f]">${a[4]}</p></div><span class="whitespace-nowrap text-[10px] text-[#6f7f9f]">${a[5]}</span></li>`).join('');
+
+// Illustration 3D (barres + flèche)
+const br=[[8,128,28,38],[44,104,30,62],[84,76,32,90],[124,40,34,126]];
+$('#bars').innerHTML=`<defs><linearGradient id="bf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ec0ff"/><stop offset="1" stop-color="#3f86f5"/></linearGradient></defs><ellipse cx="82" cy="172" rx="76" ry="12" fill="#0a2f8f" opacity=".5"/>`+br.map(([x,y,w,h])=>`<polygon points="${x},${y} ${x+10},${y-6} ${x+w+10},${y-6} ${x+w},${y}" fill="#c6e0ff"/><polygon points="${x+w},${y} ${x+w+10},${y-6} ${x+w+10},${y+h-6} ${x+w},${y+h}" fill="#2c6be0"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#bf)"/>`).join('')+`<path d="M12 98 66 56l10 8 52-48" stroke="#9fcbff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M104 12h30v28" stroke="#9fcbff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+
+// Menu mobile
+const tg=o=>{$('#sb').classList.toggle('-translate-x-full',!o);$('#ov').classList.toggle('hidden',!o)};
+$('#burger').onclick=()=>tg(true);$('#ov').onclick=()=>tg(false);
+
+lucide.createIcons();
+</script>
+</body>
+</html>

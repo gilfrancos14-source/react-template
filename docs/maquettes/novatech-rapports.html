@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech – Rapports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } };
+</script>
+<script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="bg-[#f4f7fd] font-sans text-[#0a2a7a] antialiased">
+
+<!-- Overlay mobile -->
+<div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-[270px] -translate-x-full flex-col bg-gradient-to-b from-[#0a3ba8] via-[#072b84] to-[#041851] transition-transform duration-300 lg:translate-x-0">
+  <div class="flex h-[90px] items-center gap-3 px-[30px]">
+    <svg width="40" height="46" viewBox="0 0 40 46" fill="none"><path d="M20 1 38 11v24L20 45 2 35V11z" fill="#1d6bff"/><path d="M20 1 38 11 20 21 2 11z" fill="#4d93ff"/><path d="M20 14l8 4.5v9L20 32l-8-4.5v-9z" fill="#0a2a7a"/></svg>
+    <span class="text-[26px] font-semibold tracking-tight text-white">NovaTech</span>
+  </div>
+
+  <nav id="nav" class="mt-[2px] flex flex-col gap-[2px] px-[15px]"></nav>
+
+  <div class="mt-auto p-[23px] pb-[84px]">
+    <div class="rounded-xl border border-[#2f63d6]/60 bg-[#0a3290]/70 px-[22px] pb-[22px] pt-[22px] text-center">
+      <i data-lucide="crown" class="mx-auto h-7 w-7 fill-white text-white"></i>
+      <h3 class="mt-3 text-[15px] font-semibold text-white">Passez à la version Pro</h3>
+      <p class="mt-3 text-[12.5px] leading-[1.7] text-white/85">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+      <button class="mt-5 h-[46px] w-full rounded-lg bg-[#0b5cff] text-[14px] font-medium text-white transition hover:bg-[#2a72ff]">Voir les offres</button>
+    </div>
+  </div>
+</aside>
+
+<div class="lg:pl-[270px]">
+
+  <!-- ============ HEADER ============ -->
+  <header class="flex h-[75px] items-center gap-4 bg-white px-4 sm:px-[25px]">
+    <button id="menuBtn" class="rounded-lg p-2 text-[#0a2a7a] hover:bg-[#eaf1ff] lg:hidden" aria-label="Ouvrir le menu"><i data-lucide="menu" class="h-6 w-6"></i></button>
+    <label class="flex h-[40px] w-full max-w-[548px] items-center gap-3 rounded-lg bg-[#eaf1ff] px-4">
+      <i data-lucide="search" class="h-5 w-5 shrink-0 text-[#2a5bd7]"></i>
+      <input type="text" placeholder="Rechercher une commande, un client, un produit..." class="w-full bg-transparent text-[13px] text-[#0a2a7a] outline-none placeholder:text-[#6f8fd8]">
+    </label>
+    <div class="ml-auto flex items-center gap-4 sm:gap-8">
+      <button class="relative" aria-label="Notifications">
+        <i data-lucide="bell" class="h-7 w-7 text-[#0b5cff]"></i>
+        <span class="absolute -right-2 -top-2 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#ef3b3b] text-[10px] font-semibold text-white">3</span>
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gradient-to-br from-[#8a5a3c] to-[#3b2418] text-[15px] font-semibold text-white" title="Remplacer par la photo de profil">BG</div>
+        <div class="hidden leading-tight sm:block">
+          <div class="text-[15px] font-semibold text-[#0a2a7a]">Bidosessi G.</div>
+          <div class="mt-0.5 text-[14px] text-[#6f86c4]">Administrateur</div>
+        </div>
+        <i data-lucide="chevron-down" class="ml-3 hidden h-4 w-4 text-[#6f86c4] sm:block"></i>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-4 pb-8 pt-[25px] sm:px-[25px]">
+
+    <!-- Titre + actions -->
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div class="flex items-start gap-3">
+        <div class="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_8px_rgba(11,92,255,0.12)]"><i data-lucide="bar-chart-3" class="h-7 w-7 text-[#0b5cff]" stroke-width="3"></i></div>
+        <div>
+          <h1 class="text-[30px] font-bold leading-[34px] text-[#0a2a7a]">Rapports</h1>
+          <p class="mt-1.5 text-[14px] text-[#4a6bc0]">Analysez les performances de votre boutique et prenez les bonnes décisions.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="flex h-[44px] items-center gap-3 rounded-lg border border-[#e3ebfa] bg-white px-4 text-[13px] text-[#0a2a7a]">
+          <i data-lucide="calendar" class="h-5 w-5 text-[#0b5cff]"></i>
+          <span>20/10/2025</span><i data-lucide="arrow-right" class="h-4 w-4 text-[#0b5cff]"></i><span>20/11/2025</span>
+          <i data-lucide="chevron-down" class="ml-1 h-4 w-4 text-[#0a2a7a]"></i>
+        </button>
+        <button class="flex h-[44px] items-center gap-2.5 rounded-lg bg-[#0b5cff] px-5 text-[14px] font-medium text-white shadow-[0_6px_14px_rgba(11,92,255,0.3)] transition hover:bg-[#2a72ff]">
+          <i data-lucide="download" class="h-[18px] w-[18px]"></i>Exporter le rapport
+        </button>
+      </div>
+    </div>
+
+    <!-- Cartes statistiques -->
+    <section id="stats" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"></section>
+
+    <!-- Grille principale -->
+    <div class="mt-5 grid grid-cols-1 gap-[18px] xl:grid-cols-[1fr_340px]">
+
+      <!-- Colonne gauche -->
+      <div class="flex min-w-0 flex-col gap-[18px]">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-[512px_1fr]">
+
+          <!-- Évolution des ventes -->
+          <section class="min-w-0 rounded-xl bg-white p-[18px] shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+            <div class="flex items-center justify-between">
+              <h2 class="flex items-center gap-2.5 text-[15px] font-semibold text-[#0a2a7a]"><i data-lucide="trending-up" class="h-5 w-5 text-[#0b5cff]"></i>Évolution des ventes</h2>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#3a5bb8]"><span class="h-2 w-2 rounded-full bg-[#0b6bff]"></span>Chiffre d'affaires</span>
+            </div>
+            <div class="mt-5 flex gap-3">
+              <div id="yAxis" class="relative h-[160px] w-[52px] shrink-0 text-[11px] text-[#3a5bb8]"></div>
+              <div class="min-w-0 flex-1">
+                <div id="plot" class="relative h-[160px] border-b border-l border-[#e6edfa]">
+                  <svg class="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b6bff" stop-opacity=".22"/><stop offset="1" stop-color="#0b6bff" stop-opacity=".02"/></linearGradient></defs>
+                    <g id="grid" stroke="#e6edfa" stroke-width="1" vector-effect="non-scaling-stroke"></g>
+                    <polygon id="areaPoly" fill="url(#area)"/>
+                    <polyline id="line" fill="none" stroke="#0b6bff" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+                  </svg>
+                  <div id="dots"></div>
+                </div>
+                <div class="mt-3 flex justify-between text-[11px] text-[#3a5bb8]">
+                  <span>20/10</span><span>24/10</span><span>28/10</span><span>01/11</span><span>05/11</span><span>09/11</span><span>13/11</span><span>17/11</span><span>20/11</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Répartition des commandes -->
+          <section class="rounded-xl bg-white p-[18px] shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+            <h2 class="flex items-center gap-2.5 text-[15px] font-semibold text-[#0a2a7a]"><i data-lucide="pie-chart" class="h-5 w-5 text-[#0b5cff]"></i>Répartition des commandes</h2>
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-6 sm:flex-nowrap sm:justify-start">
+              <div class="relative h-[158px] w-[158px] shrink-0 rounded-full" style="background:conic-gradient(#0b6bff 0 68%,#fbb024 68% 84%,#7c3aed 84% 96%,#ef4444 96% 100%)">
+                <div class="absolute inset-[22px] flex flex-col items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(20,60,160,0.05)]">
+                  <span class="text-[22px] font-bold leading-none text-[#0a2a7a]">248</span>
+                  <span class="mt-1 text-[13px] text-[#0a2a7a]">commandes</span>
+                </div>
+              </div>
+              <ul id="legend" class="flex-1 space-y-[15px] text-[13px]"></ul>
+            </div>
+          </section>
+        </div>
+
+        <!-- Dernières commandes -->
+        <section class="overflow-hidden rounded-xl bg-white shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+          <div class="flex items-center justify-between px-[18px] pb-[14px] pt-5">
+            <h2 class="flex items-center gap-2.5 text-[15px] font-semibold text-[#0a2a7a]"><i data-lucide="shopping-cart" class="h-5 w-5 text-[#0b5cff]"></i>Dernières commandes</h2>
+            <a href="#" class="mr-3 flex items-center gap-1.5 text-[12px] font-medium text-[#0b5cff]">Voir tout <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[720px] text-left text-[13px]">
+              <thead>
+                <tr class="h-[38px] bg-[#f6f9ff] text-[12.5px] font-normal text-[#3a5bb8]">
+                  <th class="pl-[21px] font-normal">N° commande</th><th class="font-normal">Client</th><th class="font-normal">Montant</th><th class="font-normal">Statut</th><th class="font-normal">Date</th>
+                </tr>
+              </thead>
+              <tbody id="orders"></tbody>
+            </table>
+          </div>
+          <div class="h-6"></div>
+        </section>
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="flex flex-col gap-[18px]">
+        <section class="rounded-xl bg-white px-[18px] pb-3 pt-5 shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+          <div class="flex items-center justify-between">
+            <h2 class="flex items-center gap-2.5 text-[15px] font-semibold text-[#0a2a7a]"><i data-lucide="trophy" class="h-5 w-5 text-[#0b5cff]"></i>Produits les plus vendus</h2>
+            <a href="#" class="flex items-center gap-1 text-[11px] font-medium text-[#0b5cff]">Voir tout <i data-lucide="arrow-right" class="h-3 w-3"></i></a>
+          </div>
+          <ul id="products" class="mt-3"></ul>
+        </section>
+
+        <section class="rounded-xl bg-white px-[18px] pb-4 pt-5 shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+          <div class="flex items-center justify-between">
+            <h2 class="flex items-center gap-2.5 text-[15px] font-semibold text-[#0a2a7a]"><i data-lucide="pie-chart" class="h-5 w-5 text-[#0b5cff]"></i>Ventes par catégorie</h2>
+            <a href="#" class="flex items-center gap-1 text-[11px] font-medium text-[#0b5cff]">Voir tout <i data-lucide="arrow-right" class="h-3 w-3"></i></a>
+          </div>
+          <ul id="cats" class="mt-3 space-y-[10px]"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ---------- Données ---------- */
+const nav = [
+  ['house','Tableau de bord'], ['shopping-cart','Commandes',12], ['package','Produits'], ['user','Clients'],
+  ['bar-chart-3','Rapports',3,true], ['message-circle','Messages',3], ['settings','Paramètres']
+];
+const stats = [
+  ['shopping-cart','Chiffre d\'affaires total','3 420 000 FCFA','+18%'],
+  ['truck','Nombre de commandes','248','+12%'],
+  ['user','Nouveaux clients','96','+20%'],
+  ['box','Produits vendus','312','+15%']
+];
+const legend = [['Livrées','#0b6bff','68%'],['En cours','#fbb024','16%'],['Expédiées','#7c3aed','12%'],['Annulées','#ef4444','4%']];
+const sales = [.27,.4,.6,.59,.6,.78,.88,.87,1.05,1.24,1.15,1.05,1.22,1.03,1.12,1.32,1.5,1.49,1.5,1.69].map(v => v / 2);
+const orders = [
+  ['#CMD-001248','Koffi S.','koffi@gmail.com','45 000 FCFA','Livrée','20/11/2025','14:32'],
+  ['#CMD-001247','Aminata D.','aminata@gmail.com','120 000 FCFA','Expédiée','20/11/2025','11:20'],
+  ['#CMD-001246','Yao M.','yao@gmail.com','32 000 FCFA','Livrée','19/11/2025','16:45'],
+  ['#CMD-001245','Fatou B.','fatou@gmail.com','28 000 FCFA','En cours','19/11/2025','10:12'],
+  ['#CMD-001244','Sika T.','sika@gmail.com','75 000 FCFA','Expédiée','18/11/2025','19:05']
+];
+const statusCls = { 'Livrée':['bg-[#dcfce7] text-[#16a34a]','bg-[#16a34a]'], 'Expédiée':['bg-[#dbeafe] text-[#2563eb]','bg-[#2563eb]'], 'En cours':['bg-[#dbeafe] text-[#2563eb]','bg-[#2563eb]'] };
+const products = [
+  ['headphones','Casque Bluetooth Pro','48 ventes','15%'], ['watch','Montre connectée','42 ventes','13%'],
+  ['footprints','Baskets Classiques','36 ventes','11%'], ['smartphone','Smartphone X Pro','28 ventes','9%'],
+  ['shopping-bag','Sac à dos urbain','24 ventes','8%']
+];
+const cats = [
+  ['smartphone','Électronique',28], ['shirt','Mode',22], ['watch','Accessoires',18],
+  ['house','Maison & Déco',12], ['dumbbell','Sport',10], ['package','Autres',10]
+];
+const avatarBg = ['from-[#9a6a48] to-[#3b2418]','from-[#b07a55] to-[#4a2c1c]','from-[#7a4f35] to-[#2a1a12]','from-[#a8714f] to-[#3d2418]','from-[#8c5d40] to-[#33201a]'];
+const $ = id => document.getElementById(id);
+
+/* ---------- Rendu ---------- */
+$('nav').innerHTML = nav.map(([ic, label, badge, active]) => `
+  <a href="#" class="flex h-[50px] items-center gap-[18px] rounded-lg px-[18px] text-[14.5px] text-white ${active ? 'bg-[#0b5cff] shadow-[0_6px_16px_rgba(11,92,255,0.4)]' : 'hover:bg-white/10'}">
+    <i data-lucide="${ic}" class="h-6 w-6 shrink-0 ${active ? '' : 'text-white/85'}" fill="currentColor" fill-opacity=".25"></i>
+    <span class="flex-1">${label}</span>
+    ${badge ? `<span class="flex h-6 w-6 items-center justify-center rounded-full text-[12px] font-medium ${active ? 'bg-white/25' : 'bg-[#0b6bff]'}">${badge}</span>` : ''}
+  </a>`).join('');
+
+$('stats').innerHTML = stats.map(([ic, label, val, d]) => `
+  <article class="flex gap-4 rounded-xl bg-white px-4 py-[18px] shadow-[0_2px_12px_rgba(20,60,160,0.06)]">
+    <div class="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-xl bg-[#e4ecff]"><i data-lucide="${ic}" class="h-6 w-6 text-[#2a6bff]" fill="currentColor" fill-opacity=".3"></i></div>
+    <div>
+      <div class="text-[13px] text-[#0a2a7a]">${label}</div>
+      <div class="mt-1 text-[27px] font-bold leading-[34px] text-[#0a2a7a]">${val}</div>
+      <div class="mt-1 flex items-center gap-1.5 text-[13px] font-semibold text-[#16a34a]"><i data-lucide="arrow-up" class="h-4 w-4"></i>${d}</div>
+      <div class="mt-1 text-[11.5px] text-[#6f86c4]">par rapport au mois dernier</div>
+    </div>
+  </article>`).join('');
+
+$('legend').innerHTML = legend.map(([n, c, p]) => `
+  <li class="flex items-center gap-2.5 text-[#0a2a7a]"><span class="h-3 w-3 rounded-full" style="background:${c}"></span><span class="flex-1">${n}</span><span class="font-medium">${p}</span></li>`).join('');
+
+$('orders').innerHTML = orders.map(([id, n, e, m, s, d, t], i) => `
+  <tr class="h-[50px] border-t border-[#eef2fb]">
+    <td class="pl-[21px] text-[13px] font-medium text-[#0a2a7a]">${id}</td>
+    <td><div class="flex items-center gap-3">
+      <div class="flex h-[37px] w-[37px] items-center justify-center rounded-full bg-gradient-to-br ${avatarBg[i]} text-[12px] font-semibold text-white" title="Remplacer par l'avatar du client">${n.slice(0, 1)}</div>
+      <div class="leading-[17px]"><div class="text-[12.5px] text-[#0a2a7a]">${n}</div><div class="text-[11.5px] text-[#6f86c4]">${e}</div></div>
+    </div></td>
+    <td class="text-[13px] text-[#0a2a7a]">${m}</td>
+    <td><span class="inline-flex h-[24px] items-center gap-2 rounded-full px-3.5 text-[11.5px] ${statusCls[s][0]}"><span class="h-2 w-2 rounded-full ${statusCls[s][1]}"></span>${s}</span></td>
+    <td class="text-[11.5px] leading-[17px] text-[#6f86c4]">${d}<br>${t}</td>
+  </tr>`).join('');
+
+$('products').innerHTML = products.map(([ic, n, v, p], i) => `
+  <li class="flex items-center gap-3 py-[7px] ${i ? 'border-t border-[#eef2fb]' : ''}">
+    <div class="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-lg border border-[#e6edfa] bg-[#f1f4f9]" title="Remplacer par la photo du produit"><i data-lucide="${ic}" class="h-6 w-6 text-[#1b2a4a]"></i></div>
+    <div class="flex-1 leading-[18px]"><div class="text-[12px] text-[#0a2a7a]">${n}</div><div class="text-[11px] text-[#6f86c4]">${v}</div></div>
+    <span class="text-[12px] text-[#0a2a7a]">${p}</span>
+  </li>`).join('');
+
+$('cats').innerHTML = cats.map(([ic, n, p]) => `
+  <li class="flex items-center gap-3">
+    <div class="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#e4ecff]"><i data-lucide="${ic}" class="h-[18px] w-[18px] text-[#0b5cff]"></i></div>
+    <div class="flex-1"><div class="text-[12px] text-[#0a2a7a]">${n}</div>
+      <div class="mt-1.5 h-[5px] rounded-full bg-[#e6edfa]"><div class="h-full rounded-full bg-[#0b6bff]" style="width:${p * 1.72}%"></div></div></div>
+    <span class="w-9 text-right text-[12px] text-[#0a2a7a]">${p}%</span>
+  </li>`).join('');
+
+/* ---------- Graphique ---------- */
+const pts = sales.map((v, i) => [i / (sales.length - 1) * 100, 100 - v * 100]);
+$('line').setAttribute('points', pts.map(p => p.join(',')).join(' '));
+$('areaPoly').setAttribute('points', pts.map(p => p.join(',')).join(' ') + ' 100,100 0,100');
+$('grid').innerHTML = [0, 25, 50, 75].map(y => `<line x1="0" x2="100" y1="${y}" y2="${y}"/>`).join('') +
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => `<line y1="0" y2="100" x1="${i * 100 / 8}" x2="${i * 100 / 8}"/>`).slice(0, 9).join('');
+$('dots').innerHTML = pts.map(p => `<span class="absolute h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#0b6bff] bg-white" style="left:${p[0]}%;top:${p[1]}%"></span>`).join('');
+$('yAxis').innerHTML = ['0','500 000','1 000 000','1 500 000','2 000 000'].map((t, i) =>
+  `<span class="absolute right-0 translate-y-1/2 leading-none" style="bottom:${i * 25}%">${t}</span>`).join('');
+
+/* ---------- Menu mobile ---------- */
+const sb = $('sidebar'), ov = $('overlay');
+const toggle = open => { sb.classList.toggle('-translate-x-full', !open); ov.classList.toggle('hidden', !open); };
+$('menuBtn').onclick = () => toggle(true);
+ov.onclick = () => toggle(false);
+
+lucide.createIcons();
+</script>
+</body>
+</html>

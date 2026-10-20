@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaTech - Connexion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { sans: ['Inter', 'sans-serif'] },
+    colors: { brand: { blue: '#0A5CFF', dark: '#0B1E5B', light: '#19C8FF', mute: '#6B7FAE' } }
+  } }
+}
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  /* Fond gauche : vague très légère en haut à gauche */
+  .left-bg::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 40% at 0% 15%, #EEF3FF 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 0% 100%, #F3F6FF 0%, transparent 70%);
+  }
+  /* Champs à étiquette flottante */
+  .field { position: relative; background: #F5F8FF; border: 1px solid #DCE5F7; border-radius: 12px;
+           box-shadow: 0 1px 2px rgba(11,30,91,.04); transition: border-color .15s, box-shadow .15s; }
+  .field:focus-within { border-color: #0A5CFF; box-shadow: 0 0 0 3px rgba(10,92,255,.15); }
+  .field label { position: absolute; left: 3.25rem; top: .55rem; font-size: 12px; color: #6B7FAE; pointer-events: none; }
+  .field input { width: 100%; background: transparent; outline: none; border: 0;
+                 padding: 1.7rem 3rem .6rem 3.25rem; font-size: 15px; font-weight: 500; color: #0B1E5B; height: 66px; }
+  .field .ico { position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); color: #0B1E5B; }
+
+  /* Fond droit */
+  .right-bg { background: linear-gradient(135deg, #0A3FD0 0%, #072A9A 40%, #051A66 100%); }
+  .swoosh { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  /* Mockups */
+  .scene { perspective: 1600px; }
+  .laptop { transform: rotateY(-16deg) rotateX(5deg) rotateZ(-3deg); transform-style: preserve-3d; }
+  .laptop-screen { background: #0B1E5B; border: 5px solid #0A1A55; border-radius: 14px 14px 4px 4px;
+                   box-shadow: 0 30px 60px rgba(0,0,10,.5), inset 0 0 0 1px rgba(255,255,255,.15); }
+  .laptop-base { height: 12px; margin: 0 -22px; background: linear-gradient(#3B5BC4, #1B2F8A);
+                 border-radius: 0 0 22px 22px; box-shadow: 0 18px 30px rgba(0,0,10,.5); }
+  .disc { background: radial-gradient(ellipse at center, rgba(40,110,255,.55) 0%, rgba(20,60,200,.35) 55%, transparent 72%); }
+  .phone { border: 4px solid #0A1A55; border-radius: 26px; background: #fff;
+           box-shadow: 0 25px 45px rgba(0,0,10,.55), inset 0 0 0 1px rgba(255,255,255,.2);
+           transform: rotateZ(4deg) rotateY(-6deg); }
+  .badge { font-size: 5.5px; padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+  .focus-ring:focus-visible { outline: 3px solid rgba(10,92,255,.35); outline-offset: 2px; }
+</style>
+</head>
+<body class="bg-white text-slate-800 antialiased min-h-screen flex">
+
+<!-- ===== GAUCHE : CONNEXION ===== -->
+<main class="left-bg relative w-full lg:w-[47%] flex flex-col justify-center items-center px-6 sm:px-12 py-10 bg-white">
+  <div class="relative w-full max-w-[520px]">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-4 mb-14">
+      <svg width="68" height="80" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 2.9L35.3 11.4V28.6L20 37.1L4.7 28.6V11.4L20 2.9Z" fill="#0A5CFF"/>
+        <path d="M20 8.7L29.5 14.3V25.7L20 31.3L10.5 25.7V14.3L20 8.7Z" fill="#fff"/>
+        <path d="M20 14L24.3 16.5V21.5L20 24L15.7 21.5V16.5L20 14Z" fill="#0A5CFF"/>
+      </svg>
+      <div>
+        <h1 class="text-[40px] font-bold text-brand-dark leading-none tracking-tight">NovaTech</h1>
+        <p class="text-[15px] text-brand-mute mt-1.5">Votre boutique, votre succès</p>
+      </div>
+    </div>
+
+    <!-- En-tête -->
+    <div class="mb-9">
+      <h2 class="text-[38px] font-extrabold text-brand-dark mb-3 flex items-center gap-3 tracking-tight">
+        Bon retour ! <span class="text-[34px]" aria-hidden="true">👋</span>
+      </h2>
+      <p class="text-brand-mute text-[17px] leading-relaxed">Connectez-vous à votre compte pour accéder<br>à votre espace de gestion.</p>
+    </div>
+
+    <form class="space-y-5" onsubmit="return false">
+      <!-- Email -->
+      <div class="field">
+        <svg class="ico w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 6 8.5-6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <label for="email">Adresse e-mail</label>
+        <input id="email" type="email" value="admin@novatech.com" autocomplete="email" required>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="field">
+        <svg class="ico w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3" stroke-linecap="round"/>
+        </svg>
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" value="••••••••" autocomplete="current-password" required>
+        <button type="button" id="togglePassword" aria-label="Afficher le mot de passe"
+                class="focus-ring absolute right-4 top-1/2 -translate-y-1/2 text-brand-dark rounded">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path id="slash" d="M4 4l16 16" stroke-linecap="round" class="hidden"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Options -->
+      <div class="flex items-center justify-between pt-1">
+        <label class="flex items-center gap-3 cursor-pointer select-none">
+          <span class="relative w-7 h-7 flex items-center justify-center">
+            <input type="checkbox" checked class="peer focus-ring appearance-none w-7 h-7 rounded-md border border-slate-300 bg-white checked:bg-brand-blue checked:border-brand-blue cursor-pointer transition-colors">
+            <svg class="absolute w-4 h-4 text-white pointer-events-none opacity-0 peer-checked:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="text-[15px] text-brand-dark">Se souvenir de moi</span>
+        </label>
+        <a href="#" class="focus-ring text-[15px] text-brand-blue hover:underline rounded">Mot de passe oublié ?</a>
+      </div>
+
+      <!-- Connexion -->
+      <button type="submit" class="focus-ring w-full flex justify-center items-center gap-3 bg-brand-blue hover:bg-[#0849d6] text-white h-[66px] rounded-xl text-[16px] font-semibold transition-colors mt-3 shadow-[0_10px_24px_rgba(10,92,255,.28)]">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M14 4h3a3 3 0 013 3v10a3 3 0 01-3 3h-3M4 12h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Se connecter
+      </button>
+    </form>
+
+    <!-- Séparateur -->
+    <div class="flex items-center gap-5 py-8 text-brand-mute text-[15px]">
+      <span class="flex-1 h-px bg-slate-200"></span>Ou<span class="flex-1 h-px bg-slate-200"></span>
+    </div>
+
+    <!-- Google -->
+    <button type="button" class="focus-ring w-full flex justify-center items-center gap-3 bg-white border border-slate-200 hover:bg-slate-50 text-brand-dark h-[66px] rounded-xl text-[16px] font-semibold transition-colors shadow-[0_1px_2px_rgba(11,30,91,.05)]">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continuer avec Google
+    </button>
+
+    <p class="text-center text-[14px] text-brand-mute mt-16">
+      Vous n'avez pas de compte ? <a href="#" class="focus-ring text-brand-blue hover:underline rounded">Contacter l'administrateur</a>
+    </p>
+  </div>
+</main>
+
+<!-- ===== DROITE : PROMOTION ===== -->
+<aside class="right-bg hidden lg:flex w-[53%] relative overflow-hidden flex-col justify-between px-14 xl:px-16 py-14">
+  <div class="swoosh -right-40 -top-40 w-[700px] h-[700px] bg-[#1C6BFF] opacity-25 blur-[110px]"></div>
+  <div class="swoosh -left-60 -bottom-72 w-[1100px] h-[700px] bg-[#0B2FA8] opacity-70 rotate-[-12deg]"></div>
+  <div class="swoosh -right-40 bottom-[-260px] w-[900px] h-[600px] bg-[#0A2C9E] opacity-60 rotate-12"></div>
+
+  <!-- Slogan -->
+  <div class="relative z-10 flex justify-end items-center gap-4">
+    <span class="h-px w-12 bg-brand-light"></span>
+    <span class="text-white/85 text-[12px] font-medium tracking-[.14em] uppercase">Plus qu'une boutique, une solution</span>
+  </div>
+
+  <div class="relative z-10 mt-14">
+    <h2 class="text-[46px] xl:text-[52px] leading-[1.08] font-bold text-white tracking-tight mb-6">
+      Gérez votre boutique<br><span class="text-brand-light">en toute simplicité</span>
+    </h2>
+    <p class="text-white/85 text-[16px] leading-relaxed max-w-[460px] mb-12">
+      Suivez vos ventes, gérez vos produits, vos commandes et vos clients depuis un seul espace, sécurisé et intuitif.
+    </p>
+
+    <div class="flex items-center gap-4">
+      <!-- Fonctionnalités -->
+      <ul class="space-y-9 w-[270px] shrink-0">
+        <li class="flex gap-4">
+          <span class="shrink-0 w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-black/20">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="3" width="4" height="17" rx="1"/></svg>
+          </span>
+          <div><h3 class="text-white font-semibold text-[15px] mb-1">Suivi en temps réel</h3>
+          <p class="text-white/65 text-[13px] leading-snug">Gardez un œil sur vos ventes et vos performances.</p></div>
+        </li>
+        <li class="flex gap-4">
+          <span class="shrink-0 w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-black/20">
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM4 7.5L12 12l8-4.5M12 12v9" stroke-linejoin="round"/></svg>
+          </span>
+          <div><h3 class="text-white font-semibold text-[15px] mb-1">Gestion des produits</h3>
+          <p class="text-white/65 text-[13px] leading-snug">Ajoutez, modifiez et organisez vos produits facilement.</p></div>
+        </li>
+        <li class="flex gap-4">
+          <span class="shrink-0 w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-black/20">
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.2 10.5h10.2L19.5 7H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/></svg>
+          </span>
+          <div><h3 class="text-white font-semibold text-[15px] mb-1">Commandes simplifiées</h3>
+          <p class="text-white/65 text-[13px] leading-snug">Suivez et gérez toutes vos commandes en un clin d'œil.</p></div>
+        </li>
+        <li class="flex gap-4">
+          <span class="shrink-0 w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-black/20">
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.8a3.5 3.5 0 010 6.4M18 14.3c2 .8 3.5 2.6 3.5 5.7" stroke-linecap="round"/></svg>
+          </span>
+          <div><h3 class="text-white font-semibold text-[15px] mb-1">Vos clients au centre</h3>
+          <p class="text-white/65 text-[13px] leading-snug">Offrez une meilleure expérience à vos clients.</p></div>
+        </li>
+      </ul>
+
+      <!-- Mockups -->
+      <div class="scene relative flex-1 h-[430px] min-w-0" aria-hidden="true">
+        <div class="disc absolute left-[8%] right-[-8%] bottom-[-10px] h-[150px] rounded-[50%]"></div>
+
+        <!-- Ordinateur -->
+        <div class="laptop absolute right-0 top-[10px] w-[430px]">
+          <div class="laptop-screen">
+            <div class="bg-white rounded-[6px] overflow-hidden flex h-[255px]">
+              <div class="w-[78px] bg-[#0B1E5B] p-2 flex flex-col gap-1.5">
+                <div class="flex items-center gap-1 mb-2"><div class="w-3 h-3 rounded-sm bg-brand-blue"></div><span class="text-[6px] text-white font-semibold">NovaTech</span></div>
+                <div class="h-3.5 rounded bg-brand-blue/80 text-[5.5px] text-white flex items-center px-1">Tableau de bord</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Commandes</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Produits</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Clients</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Rapports</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Messages</div>
+                <div class="h-3.5 text-[5.5px] text-white/60 flex items-center px-1">Paramètres</div>
+              </div>
+              <div class="flex-1 bg-[#F4F7FF] p-2.5 min-w-0">
+                <div class="text-[8px] font-bold text-brand-dark mb-2">Tableau de bord</div>
+                <div class="grid grid-cols-3 gap-1.5 mb-2">
+                  <div class="bg-white rounded p-1.5"><div class="text-[5.5px] text-slate-500">Ventes aujourd'hui</div><div class="text-[9px] font-bold text-brand-dark">342 500 FCFA</div><div class="text-[5.5px] text-green-600 font-semibold">↑ +12%</div></div>
+                  <div class="bg-white rounded p-1.5"><div class="text-[5.5px] text-slate-500">Commandes</div><div class="text-[11px] font-bold text-brand-dark">48</div><div class="text-[5.5px] text-green-600 font-semibold">↑ +8%</div></div>
+                  <div class="bg-white rounded p-1.5"><div class="text-[5.5px] text-slate-500">Clients</div><div class="text-[11px] font-bold text-brand-dark">36</div><div class="text-[5.5px] text-green-600 font-semibold">↑ +14%</div></div>
+                </div>
+                <div class="grid grid-cols-5 gap-1.5">
+                  <div class="col-span-2 bg-white rounded p-1.5 h-[108px] flex flex-col">
+                    <div class="text-[6px] font-semibold text-brand-dark mb-1">Évolution des ventes</div>
+                    <svg class="flex-1 w-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+                      <path d="M0,44 L12,40 L24,42 L36,32 L48,34 L60,22 L72,26 L84,12 L100,6 L100,50 L0,50Z" fill="#E4EEFF"/>
+                      <path d="M0,44 L12,40 L24,42 L36,32 L48,34 L60,22 L72,26 L84,12 L100,6" fill="none" stroke="#0A5CFF" stroke-width="1.6"/>
+                    </svg>
+                  </div>
+                  <div class="col-span-3 bg-white rounded p-1.5 h-[108px]">
+                    <div class="text-[6px] font-semibold text-brand-dark mb-1">Commandes récentes</div>
+                    <div class="space-y-1.5 text-[5.5px] text-slate-600">
+                      <div class="flex justify-between items-center"><span>#CMD-001245</span><span>15 000 FCFA</span><span class="badge bg-green-100 text-green-700">Livrée</span></div>
+                      <div class="flex justify-between items-center"><span>#CMD-001244</span><span>28 000 FCFA</span><span class="badge bg-blue-100 text-blue-700">Expédiée</span></div>
+                      <div class="flex justify-between items-center"><span>#CMD-001243</span><span>42 500 FCFA</span><span class="badge bg-sky-100 text-sky-700">En cours</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+        </div>
+
+        <!-- Téléphone -->
+        <div class="phone absolute left-[-6px] bottom-[26px] w-[118px] h-[236px] overflow-hidden z-20">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-3.5 bg-[#0A1A55] rounded-b-xl"></div>
+          <div class="pt-6 px-2.5 pb-2 h-full flex flex-col">
+            <div class="flex items-center gap-1 mb-2"><div class="w-2.5 h-2.5 rounded-sm bg-brand-blue"></div><span class="text-[6px] font-bold text-brand-dark">NovaTech</span></div>
+            <div class="text-[5px] text-slate-500">Ventes du jour</div>
+            <div class="text-[10px] font-bold text-brand-dark">342 500 FCFA</div>
+            <div class="text-[5px] text-green-600 font-semibold mb-1">↑ +12%</div>
+            <svg class="w-full h-12 mb-2" viewBox="0 0 100 40" preserveAspectRatio="none">
+              <path d="M0,34 L18,28 L34,31 L52,20 L68,22 L84,10 L100,4 L100,40 L0,40Z" fill="#E4EEFF"/>
+              <path d="M0,34 L18,28 L34,31 L52,20 L68,22 L84,10 L100,4" fill="none" stroke="#0A5CFF" stroke-width="2"/>
+            </svg>
+            <div class="grid grid-cols-3 gap-1.5 mt-auto">
+              <div class="h-7 rounded bg-[#EAF1FF]"></div><div class="h-7 rounded bg-[#EAF1FF]"></div><div class="h-7 rounded bg-[#EAF1FF]"></div>
+              <div class="h-7 rounded bg-[#EAF1FF]"></div><div class="h-7 rounded bg-[#EAF1FF]"></div><div class="h-7 rounded bg-[#EAF1FF]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signature -->
+  <div class="relative z-10 flex flex-col items-end mt-6">
+    <p class="text-white/85 text-[28px] mb-1" style="font-family:'Dancing Script','Brush Script MT',cursive">Bienvenue chez</p>
+    <div class="flex items-center gap-2.5">
+      <svg width="38" height="42" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 2.9L35.3 11.4V28.6L20 37.1L4.7 28.6V11.4L20 2.9Z" fill="#0A5CFF"/>
+        <path d="M20 8.7L29.5 14.3V25.7L20 31.3L10.5 25.7V14.3L20 8.7Z" fill="#fff"/>
+        <path d="M20 14L24.3 16.5V21.5L20 24L15.7 21.5V16.5L20 14Z" fill="#0A5CFF"/>
+      </svg>
+      <span class="text-white text-[28px] font-bold tracking-tight">NovaTech</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const pwd = document.getElementById('password');
+  const btn = document.getElementById('togglePassword');
+  const slash = document.getElementById('slash');
+  btn.addEventListener('click', () => {
+    const show = pwd.type === 'password';
+    pwd.type = show ? 'text' : 'password';
+    slash.classList.toggle('hidden', !show);
+    btn.setAttribute('aria-label', show ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+  });
+</script>
+</body>
+</html>

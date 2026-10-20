@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech – Produits</title>
+<!-- CDN Tailwind : adapté à la démo / au prototypage. En production, utilisez une installation Tailwind (CLI/PostCSS). -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+  colors: { navy: '#0b1f6b', brand: '#0b6bff', soft: '#e6efff' }
+}}};
+</script>
+<style>
+  .sb svg { fill: currentColor; fill-opacity: .85; }
+  .sb svg.nf { fill: none; }
+  input[type=checkbox].cb { appearance: none; width: 16px; height: 16px; border: 1.5px solid #9db6e6; border-radius: 4px; background: #fff; display: grid; place-content: center; cursor: pointer; }
+  input[type=checkbox].cb:checked { background: #0b6bff; border-color: #0b6bff; }
+  input[type=checkbox].cb:checked::after { content: ""; width: 8px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translate(1px,-1px); }
+</style>
+</head>
+<body class="bg-[#f3f7fd] font-sans text-navy antialiased">
+
+<!-- Overlay mobile -->
+<div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-[272px] -translate-x-full flex-col bg-gradient-to-b from-[#0a2a8f] via-[#0a3aa8] to-[#06206d] transition-transform duration-200 lg:translate-x-0">
+  <div class="flex h-[76px] items-center gap-2.5 px-[38px]">
+    <svg width="40" height="44" viewBox="0 0 40 44" fill="none"><path d="M20 1l17 10v22L20 43 3 33V11L20 1z" fill="#1e86ff"/><path d="M20 1l17 10-17 10L3 11 20 1z" fill="#5cb0ff"/><path d="M20 21v22L3 33V11l17 10z" fill="#0f5fe0"/><path d="M20 15l7 4v7l-7 4-7-4v-7l7-4z" fill="#0a2a8f" fill-opacity=".85"/></svg>
+    <span class="text-[26px] font-semibold tracking-tight text-white">NovaTech</span>
+    <i data-lucide="chevron-right" class="ml-3 h-[18px] w-[18px] text-white/80"></i>
+  </div>
+
+  <nav class="sb mt-[24px] flex flex-col gap-[6px] px-4 text-[15px] font-medium text-white">
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="home" class="h-[26px] w-[26px]"></i>Tableau de bord</a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="shopping-cart" class="h-[26px] w-[26px]"></i><span class="flex-1">Commandes</span><span class="flex h-6 w-6 items-center justify-center rounded-full bg-[#2f7bff] text-[12px] font-semibold text-white">12</span></a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg bg-brand px-[16px] text-white shadow-[0_6px_16px_rgba(11,107,255,.35)]"><i data-lucide="package" class="h-[26px] w-[26px] !fill-white"></i>Produits</a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="user" class="h-[26px] w-[26px]"></i>Clients</a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="bar-chart-3" class="h-[26px] w-[26px]" stroke-width="3.2"></i>Rapports</a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="message-circle" class="h-[26px] w-[26px]"></i><span class="flex-1">Messages</span><span class="flex h-6 w-6 items-center justify-center rounded-full bg-[#2f7bff] text-[12px] font-semibold text-white">3</span></a>
+    <a href="#" class="flex h-[52px] items-center gap-[18px] rounded-lg px-[16px] text-[#cfe0ff] hover:bg-white/10"><i data-lucide="settings" class="h-[26px] w-[26px]"></i>Paramètres</a>
+  </nav>
+
+  <div class="mx-[23px] mb-[86px] mt-auto rounded-xl border border-[#2e5fd0] bg-[#0a2f9e]/70 px-[18px] pb-[22px] pt-[22px] text-center">
+    <i data-lucide="crown" class="mx-auto h-[26px] w-[26px] fill-white text-white"></i>
+    <h3 class="mt-2 text-[15px] font-semibold text-white">Passez à la version Pro</h3>
+    <p class="mt-[14px] text-[13px] leading-[19px] text-[#dbe7ff]">Profitez de plus de fonctionnalités pour faire grandir votre activité.</p>
+    <button class="mt-[16px] h-[43px] w-full rounded-md bg-brand text-[14px] font-medium text-white shadow-[0_6px_14px_rgba(11,107,255,.4)] hover:bg-[#0a5fe6]">Voir les offres</button>
+  </div>
+</aside>
+
+<!-- ============ CONTENU ============ -->
+<div class="lg:pl-[272px]">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-20 flex h-[76px] items-center gap-3 bg-white px-4 shadow-[0_2px_10px_rgba(20,60,160,.06)] sm:px-7">
+    <button id="menuBtn" class="rounded-lg p-2 text-navy hover:bg-soft lg:hidden" aria-label="Ouvrir le menu"><i data-lucide="menu" class="h-6 w-6"></i></button>
+    <div class="flex h-[41px] w-full max-w-[512px] items-center gap-3 rounded-lg bg-[#eaf2fe] px-4">
+      <i data-lucide="search" class="h-5 w-5 shrink-0 text-[#2a5bd7]"></i>
+      <input type="text" placeholder="Rechercher un produit, une catégorie..." class="w-full bg-transparent text-[14px] text-navy placeholder:text-[#7a8fbf] focus:outline-none">
+    </div>
+    <div class="ml-auto flex items-center gap-4 sm:gap-6">
+      <button class="relative rounded-lg p-1.5 text-[#1c5fe0]" aria-label="Notifications">
+        <i data-lucide="bell" class="h-[28px] w-[28px]"></i>
+        <span class="absolute -right-0.5 -top-0.5 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#ef3b4b] text-[10px] font-semibold text-white">3</span>
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-[#5b7fc9] to-[#1b2f6e] ring-2 ring-[#dfe8f8]"><i data-lucide="user" class="h-7 w-7 fill-[#3a2a22] text-[#3a2a22]"></i></div>
+        <div class="hidden leading-tight sm:block"><div class="text-[15px] font-semibold text-navy">Bidosessi G.</div><div class="text-[14px] text-[#5a74b5]">Administrateur</div></div>
+        <i data-lucide="chevron-down" class="ml-1 hidden h-5 w-5 text-[#2a5bd7] sm:block"></i>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-4 pb-6 pt-[22px] sm:px-6">
+
+    <!-- Titre + action -->
+    <div class="flex flex-wrap items-center justify-between gap-4 px-1">
+      <div class="flex items-center gap-4">
+        <div class="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_8px_rgba(20,60,160,.08)]"><i data-lucide="box" class="h-6 w-6 fill-[#2f7bff] text-[#0b6bff]"></i></div>
+        <div class="leading-none">
+          <h1 class="text-[30px] font-bold leading-[34px] text-navy">Produits</h1>
+          <p class="mt-1 text-[15px] text-[#3b5bb5]">Gérez vos produits et mettez à jour votre catalogue.</p>
+        </div>
+      </div>
+      <button class="flex h-[42px] items-center gap-3 rounded-lg bg-brand px-5 text-[14px] font-medium text-white shadow-[0_6px_14px_rgba(11,107,255,.3)] hover:bg-[#0a5fe6]"><i data-lucide="plus" class="h-5 w-5"></i>Ajouter un produit</button>
+    </div>
+
+    <!-- Cartes statistiques -->
+    <section id="stats" class="mt-[27px] grid grid-cols-1 gap-[18px] sm:grid-cols-2 xl:grid-cols-4"></section>
+
+    <!-- Carte tableau -->
+    <section class="mt-[18px] rounded-xl bg-white p-4 shadow-[0_2px_12px_rgba(20,60,160,.06)]">
+
+      <!-- Filtres -->
+      <div class="flex flex-wrap gap-4 xl:flex-nowrap">
+        <div class="flex h-[38px] min-w-[220px] flex-1 items-center gap-3 rounded-lg border border-[#d3e1f7] bg-[#f9fbff] px-3.5 xl:flex-[511]">
+          <i data-lucide="search" class="h-[18px] w-[18px] text-[#2a5bd7]"></i>
+          <input id="q" type="text" placeholder="Rechercher un produit..." class="w-full bg-transparent text-[13px] text-navy placeholder:text-[#7a8fbf] focus:outline-none">
+        </div>
+        <div class="relative h-[38px] w-full sm:w-[196px]">
+          <select id="cat" class="h-full w-full appearance-none rounded-lg border border-[#d3e1f7] bg-[#f9fbff] pl-4 pr-9 text-[13px] text-navy focus:outline-none">
+            <option value="">Toutes les catégories</option><option>Électronique</option><option>Mode</option><option>Téléphonie</option><option>Accessoires</option><option>Informatique</option>
+          </select>
+          <i data-lucide="chevron-down" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#2a5bd7]"></i>
+        </div>
+        <div class="relative h-[38px] w-full sm:w-[193px]">
+          <select id="st" class="h-full w-full appearance-none rounded-lg border border-[#d3e1f7] bg-[#f9fbff] pl-4 pr-9 text-[13px] text-navy focus:outline-none">
+            <option value="">Tous les statuts</option><option>En stock</option><option>Rupture de stock</option>
+          </select>
+          <i data-lucide="chevron-down" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#2a5bd7]"></i>
+        </div>
+        <div class="flex h-[38px] w-full items-center justify-center gap-3 rounded-lg border border-[#d3e1f7] bg-[#f9fbff] px-3 text-[12px] text-navy sm:w-[231px]">
+          <i data-lucide="calendar" class="h-[18px] w-[18px] text-[#2a5bd7]"></i><span>20/10/2025</span><i data-lucide="arrow-right" class="h-4 w-4 text-[#2a5bd7]"></i><span>20/11/2025</span>
+        </div>
+      </div>
+
+      <!-- Tableau -->
+      <div class="mt-[17px] overflow-x-auto rounded-lg border border-[#e3ebf8]">
+        <div class="min-w-[1000px]">
+          <div class="grid h-[42px] grid-cols-[44fr_96fr_211fr_158fr_161fr_92fr_189fr_162fr_69fr] items-center bg-[#f1f6fd] text-[12px] font-medium text-navy">
+            <div class="pl-[14px]"><input id="all" type="checkbox" class="cb"></div>
+            <div class="pl-3">Image</div><div>Nom du produit</div><div>Catégorie</div><div>Prix</div><div>Stock</div><div>Statut</div><div>Date d'ajout</div><div>Actions</div>
+          </div>
+          <div id="rows"></div>
+        </div>
+      </div>
+
+      <!-- Pied de tableau -->
+      <div class="mt-[8px] flex flex-wrap items-center justify-between gap-3 px-1 pt-1">
+        <p class="text-[11px] text-[#6d83b5]">Affichage de <span id="count">8</span> sur 248 produits</p>
+        <div id="pager" class="flex items-center gap-[7px]"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+/* ---------- Données ---------- */
+const stats = [
+  { label:'Total des produits',  v:'248', d:'+12%', up:true,  icon:'box',           tone:'#2f7bff' },
+  { label:'Produits en stock',   v:'231', d:'+8%',  up:true,  icon:'tag',           tone:'#2f7bff' },
+  { label:'Produits en rupture', v:'17',  d:'-6%',  up:false, icon:'alert-triangle',tone:'#2f7bff' },
+  { label:'Catégories',          v:'12',  d:'+2%',  up:true,  icon:'layout-grid',   tone:'#2f7bff' },
+];
+const products = [
+  { n:'Casque Bluetooth Pro', c:'PRD-001', cat:'Électronique', p:'45 000', s:25,  d:'20/11/2025', t:'14:32', i:'headphones' },
+  { n:'Montre connectée',     c:'PRD-002', cat:'Électronique', p:'32 000', s:12,  d:'19/11/2025', t:'10:24', i:'watch' },
+  { n:'Baskets Classiques',   c:'PRD-003', cat:'Mode',         p:'28 000', s:0,   d:'18/11/2025', t:'16:45', i:'footprints' },
+  { n:'Smartphone X Pro',     c:'PRD-004', cat:'Téléphonie',   p:'120 000',s:8,   d:'17/11/2025', t:'11:20', i:'smartphone' },
+  { n:'Sac à dos urbain',     c:'PRD-005', cat:'Accessoires',  p:'22 000', s:15,  d:'16/11/2025', t:'09:14', i:'backpack' },
+  { n:'Ordinateur portable',  c:'PRD-006', cat:'Informatique', p:'250 000',s:5,   d:'15/11/2025', t:'15:37', i:'laptop' },
+  { n:'Baskets sport',        c:'PRD-007', cat:'Mode',         p:'35 000', s:3,   d:'14/11/2025', t:'12:03', i:'footprints' },
+  { n:'Écouteurs sans fil',   c:'PRD-008', cat:'Électronique', p:'18 000', s:0,   d:'13/11/2025', t:'17:21', i:'headphones' },
+];
+
+/* ---------- Cartes statistiques ---------- */
+document.getElementById('stats').innerHTML = stats.map(s => `
+  <div class="flex h-[144px] gap-[20px] rounded-lg bg-white px-[20px] pt-[19px] shadow-[0_2px_10px_rgba(20,60,160,.07)]">
+    <div class="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-xl bg-soft"><i data-lucide="${s.icon}" class="h-6 w-6 fill-[${s.tone}] text-[${s.tone}] ${s.icon==='alert-triangle'?'!fill-[#0b6bff] [&>*]:stroke-white':''}"></i></div>
+    <div class="min-w-0">
+      <div class="pt-[1px] text-[14px] text-navy">${s.label}</div>
+      <div class="mt-[6px] text-[26px] font-bold leading-[32px] text-navy">${s.v}</div>
+      <div class="mt-[8px] flex items-center gap-2 text-[13px] font-medium ${s.up?'text-[#12b76a]':'text-[#ef3b4b]'}">
+        <i data-lucide="${s.up?'arrow-up':'arrow-down'}" class="h-4 w-4"></i>${s.d}
+      </div>
+      <div class="mt-[6px] whitespace-nowrap text-[12px] text-[#7388b8]">par rapport au mois dernier</div>
+    </div>
+  </div>`).join('');
+
+/* ---------- Tableau ---------- */
+const COLS = 'grid-cols-[44fr_96fr_211fr_158fr_161fr_92fr_189fr_162fr_69fr]';
+function badge(s){
+  return s > 0
+    ? `<span class="inline-flex h-[24px] items-center gap-2 rounded-full bg-[#dcf6ee] px-3 text-[11px] font-medium text-[#3f5f66]"><span class="h-2.5 w-2.5 rounded-full bg-[#2fc08c]"></span>En stock</span>`
+    : `<span class="inline-flex h-[24px] items-center gap-2 rounded-full bg-[#fde6ea] px-3 text-[11px] font-medium text-[#e5304a]"><span class="h-2.5 w-2.5 rounded-full bg-[#ef3b4b]"></span>Rupture de stock</span>`;
+}
+function render(){
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  const cat = document.getElementById('cat').value;
+  const st = document.getElementById('st').value;
+  const list = products.filter(p =>
+    (!q || p.n.toLowerCase().includes(q) || p.c.toLowerCase().includes(q)) &&
+    (!cat || p.cat === cat) &&
+    (!st || (st === 'En stock' ? p.s > 0 : p.s === 0)));
+  document.getElementById('rows').innerHTML = list.length ? list.map(p => `
+    <div class="grid ${COLS} h-[62px] items-center border-t border-[#e8eef8] text-[13px] hover:bg-[#f8fbff]">
+      <div class="pl-[14px]"><input type="checkbox" class="cb row-cb"></div>
+      <div class="pl-[10px]"><div class="flex h-[50px] w-[60px] items-center justify-center rounded-lg bg-gradient-to-b from-[#f4f6fa] to-[#dfe5ee] text-[#3b4660] ring-1 ring-[#e3e9f3]"><i data-lucide="${p.i}" class="h-6 w-6"></i></div></div>
+      <div class="leading-[18px]"><div class="font-medium text-navy">${p.n}</div><div class="mt-[5px] text-[11px] text-[#8b9cc0]">#${p.c}</div></div>
+      <div><span class="inline-flex h-[24px] items-center rounded-full bg-[#e3eefe] px-3 text-[11px] font-medium text-[#1f5fd0]">${p.cat}</span></div>
+      <div class="font-medium text-[#1558d6]">${p.p} FCFA</div>
+      <div class="font-medium text-[#1558d6]">${p.s}</div>
+      <div>${badge(p.s)}</div>
+      <div class="leading-[18px]"><div class="text-[12px] text-navy">${p.d}</div><div class="mt-[5px] text-[11px] text-[#8b9cc0]">${p.t}</div></div>
+      <div class="pl-[16px]"><button class="rounded p-1 text-[#1c5fe0] hover:bg-soft" aria-label="Actions"><i data-lucide="more-horizontal" class="h-5 w-5" stroke-width="3"></i></button></div>
+    </div>`).join('')
+    : `<div class="border-t border-[#e8eef8] py-10 text-center text-[13px] text-[#7388b8]">Aucun produit trouvé.</div>`;
+  document.getElementById('count').textContent = list.length;
+  document.getElementById('all').checked = false;
+  lucide.createIcons();
+}
+['q','cat','st'].forEach(id => document.getElementById(id).addEventListener('input', render));
+document.getElementById('all').addEventListener('change', e => document.querySelectorAll('.row-cb').forEach(c => c.checked = e.target.checked));
+
+/* ---------- Pagination ---------- */
+let page = 1;
+function pager(){
+  const base = 'flex h-8 w-8 items-center justify-center rounded-md border text-[12px] font-medium';
+  let h = `<button data-p="prev" class="${base} border-[#d3e1f7] bg-white text-[#7aa2ee]"><i data-lucide="chevron-left" class="h-4 w-4"></i></button>`;
+  for (let i = 1; i <= 5; i++) h += `<button data-p="${i}" class="${base} ${i===page?'border-brand bg-brand text-white shadow-[0_4px_10px_rgba(11,107,255,.35)]':'border-[#d3e1f7] bg-white text-[#1c4fc0] hover:bg-soft'}">${i}</button>`;
+  h += `<button data-p="next" class="${base} border-[#d3e1f7] bg-white text-navy"><i data-lucide="chevron-right" class="h-4 w-4"></i></button>`;
+  const el = document.getElementById('pager'); el.innerHTML = h; lucide.createIcons();
+}
+document.getElementById('pager').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const v = b.dataset.p;
+  page = v === 'prev' ? Math.max(1, page-1) : v === 'next' ? Math.min(5, page+1) : +v;
+  pager();
+});
+
+/* ---------- Menu mobile ---------- */
+const sb = document.getElementById('sidebar'), ov = document.getElementById('overlay');
+const toggle = open => { sb.classList.toggle('-translate-x-full', !open); ov.classList.toggle('hidden', !open); };
+document.getElementById('menuBtn').addEventListener('click', () => toggle(true));
+ov.addEventListener('click', () => toggle(false));
+
+render(); pager(); lucide.createIcons();
+</script>
+</body>
+</html>

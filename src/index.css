@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --color-brand-blue: #0a5cff;
+  --color-brand-dark: #0b1e5b;
+  --color-brand-light: #19c8ff;
+  --color-brand-mute: #6b7fae;
+
+  --color-navy: #0b1f6b;
+  --color-brand: #0b6bff;
+  --color-soft: #e6efff;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dfe9ff;
+  --color-brand-200: #c3d7ff;
+  --color-brand-300: #94b7ff;
+  --color-brand-400: #5d8fff;
+  --color-brand-500: #0a5cff;
+  --color-brand-600: #064fe0;
+  --color-brand-700: #0b3fa8;
+
+  --color-ink: #0b1e5b;
+  --color-mute: #6b7fae;
+  --color-surface: #f3f7ff;
+
+  --shadow-card: 0 2px 12px rgba(20, 60, 160, 0.06);
+  --shadow-soft: 0 2px 8px rgba(20, 60, 160, 0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.client-cb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border: 1.5px solid #a9c0ee;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  display: block;
+}
+
+.client-cb:checked {
+  border-color: #0b5cf0;
+  background: #0b5cf0
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 11px no-repeat;
+}

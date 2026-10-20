@@ -294,7 +294,6 @@ export const navItems: NavItem[] = [
   { icon: 'users', label: 'Clients', to: '/clients' },
   { icon: 'chart', label: 'Rapports', to: '/rapports' },
   { icon: 'message', label: 'Messages', to: '/messages', badge: '3' },
-  { icon: 'settings', label: 'Paramètres' },
 ]
 
 export type ProductCategory =

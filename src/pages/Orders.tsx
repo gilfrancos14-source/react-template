@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { icons } from '../components/icons'
+import { products } from '../data/mock'
 import { cn } from '../lib/cn'
 
 const CARD = 'rounded-[10px] bg-white shadow-[0_2px_12px_rgba(20,60,160,0.06)]'
@@ -9,6 +10,11 @@ const NAV_ITEM =
 const NAV_ICON = 'h-[24px] w-[24px] shrink-0 text-[#a9bde8]'
 const BADGE =
   'ml-auto flex h-[24px] min-w-[24px] items-center justify-center rounded-full bg-[#1a5cf5] px-[6px] text-[12px] font-semibold text-white'
+
+const portrait = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=160&h=160&q=80&crop=faces`
+
+const adminPhoto = portrait('1566492031773-4f4e44671857')
 
 const stats = [
   {
@@ -69,8 +75,8 @@ const orders: {
   id: string
   name: string
   email: string
-  avatar: string
-  icon: keyof typeof icons
+  photo: string
+  productPhoto: string
   articles: string
   extra: boolean
   amount: string
@@ -82,8 +88,8 @@ const orders: {
     id: '001248',
     name: 'Koffi S.',
     email: 'koffi@gmail.com',
-    avatar: 'from-[#8a5a3c] to-[#3b2418]',
-    icon: 'headphones',
+    photo: portrait('1519085360753-af0119f7cbe7'),
+    productPhoto: products[0].image,
     articles: '1 article',
     extra: true,
     amount: '45 000 FCFA',
@@ -95,8 +101,8 @@ const orders: {
     id: '001247',
     name: 'Aminata D.',
     email: 'aminata@gmail.com',
-    avatar: 'from-[#b07a5a] to-[#4a2c1e]',
-    icon: 'smartphone',
+    photo: portrait('1580489944761-15a19d654956'),
+    productPhoto: products[3].image,
     articles: '2 articles',
     extra: true,
     amount: '120 000 FCFA',
@@ -108,8 +114,8 @@ const orders: {
     id: '001246',
     name: 'Yao M.',
     email: 'yao@gmail.com',
-    avatar: 'from-[#6d4630] to-[#24140c]',
-    icon: 'footprints',
+    photo: portrait('1506794778202-cad84cf45f1d'),
+    productPhoto: products[2].image,
     articles: '1 article',
     extra: false,
     amount: '32 000 FCFA',
@@ -121,8 +127,8 @@ const orders: {
     id: '001245',
     name: 'Fatou B.',
     email: 'fatou@gmail.com',
-    avatar: 'from-[#a56b4b] to-[#3a2217]',
-    icon: 'backpack',
+    photo: portrait('1531123897727-8f129e1688ce'),
+    productPhoto: products[4].image,
     articles: '1 article',
     extra: false,
     amount: '28 000 FCFA',
@@ -134,8 +140,8 @@ const orders: {
     id: '001244',
     name: 'Sika T.',
     email: 'sika@gmail.com',
-    avatar: 'from-[#7b4e33] to-[#2b180f]',
-    icon: 'ear',
+    photo: portrait('1534528741775-53994a69daeb'),
+    productPhoto: products[7].image,
     articles: '1 article',
     extra: false,
     amount: '75 000 FCFA',
@@ -147,8 +153,8 @@ const orders: {
     id: '001243',
     name: 'Rachid A.',
     email: 'rachid@gmail.com',
-    avatar: 'from-[#9c6a4a] to-[#35200f]',
-    icon: 'watch',
+    photo: portrait('1500648767791-00dcc994a43e'),
+    productPhoto: products[1].image,
     articles: '1 article',
     extra: false,
     amount: '65 000 FCFA',
@@ -160,8 +166,9 @@ const orders: {
     id: '001242',
     name: 'Mariam K.',
     email: 'mariam@gmail.com',
-    avatar: 'from-[#7a5038] to-[#2a1810]',
-    icon: 'armchair',
+    photo: portrait('1494790108377-be9c29b29330'),
+    productPhoto:
+      'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=200&h=160&q=80',
     articles: '1 article',
     extra: false,
     amount: '52 000 FCFA',
@@ -173,8 +180,8 @@ const orders: {
     id: '001241',
     name: 'Diallo M.',
     email: 'diallo@gmail.com',
-    avatar: 'from-[#5e3b26] to-[#1f1009]',
-    icon: 'laptop',
+    photo: portrait('1531384441138-2736e62e0919'),
+    productPhoto: products[5].image,
     articles: '1 article',
     extra: false,
     amount: '210 000 FCFA',
@@ -289,10 +296,6 @@ export function Orders() {
             <span>Messages</span>
             <span className={BADGE}>3</span>
           </Link>
-          <button type="button" className={NAV_ITEM}>
-            <icons.settings className={NAV_ICON} />
-            <span>Paramètres</span>
-          </button>
         </nav>
 
         <div className="mt-auto px-[26px] pb-[65px]">
@@ -340,11 +343,13 @@ export function Orders() {
               </span>
             </button>
             <div className="flex items-center gap-[14px]">
-              <div
-                className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gradient-to-br from-[#7a4a2b] to-[#2d1a10] text-[16px] font-bold text-white"
-                title="Remplacer par la photo de profil"
-              >
+              <div className="relative flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#7a4a2b] to-[#2d1a10] text-[16px] font-bold text-white">
                 BG
+                <img
+                  src={adminPhoto}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
               </div>
               <div className="hidden leading-tight sm:block">
                 <p className="text-[15px] font-bold">Bidosessi G.</p>
@@ -478,9 +483,7 @@ export function Orders() {
                   <div>Actions</div>
                 </div>
 
-                {rows.map((order) => {
-                  const Icon = icons[order.icon]
-                  return (
+                {rows.map((order) => (
                     <div
                       key={order.id}
                       className={cn(
@@ -498,13 +501,13 @@ export function Orders() {
                       </div>
                       <div className="font-bold">#CMD-{order.id}</div>
                       <div className="flex items-center gap-[15px]">
-                        <div
-                          className={cn(
-                            'flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-[13px] font-bold text-white',
-                            order.avatar,
-                          )}
-                        >
+                        <div className="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#8a5a3c] to-[#3b2418] text-[13px] font-bold text-white">
                           {initials(order.name)}
+                          <img
+                            src={order.photo}
+                            alt=""
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
                         </div>
                         <div className="leading-tight">
                           <p className="font-semibold">{order.name}</p>
@@ -512,8 +515,13 @@ export function Orders() {
                         </div>
                       </div>
                       <div className="flex items-center gap-[14px]">
-                        <div className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[8px] border border-[#e3ecfb] bg-[#f6f9ff] text-[#1f2a44]">
-                          <Icon className="h-[22px] w-[22px]" />
+                        <div className="h-[42px] w-[42px] shrink-0 overflow-hidden rounded-[8px] border border-[#e3ecfb] bg-[#f6f9ff]">
+                          <img
+                            src={order.productPhoto}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
                         <span className="text-[12px] text-[#5d7bc2]">{order.articles}</span>
                         {order.extra ? (
@@ -538,18 +546,26 @@ export function Orders() {
                         <p className="text-[12.5px] font-medium">{order.date}</p>
                         <p className="mt-[6px] text-[11.5px] text-[#7d92c4]">{order.time}</p>
                       </div>
-                      <div>
+                      <div className="flex items-center gap-[6px]">
                         <button
                           type="button"
-                          aria-label={`Actions pour la commande ${order.id}`}
-                          className="flex w-[41px] justify-center text-[#0a1f6b]"
+                          title="Modifier"
+                          aria-label={`Modifier la commande ${order.id}`}
+                          className="flex h-[28px] w-[28px] items-center justify-center rounded-[7px] border border-[#dbe6fb] text-[#1d5df0] transition hover:bg-[#eaf2ff]"
                         >
-                          <icons.more className="h-[20px] w-[20px]" />
+                          <icons.squarePen className="h-[14px] w-[14px]" />
+                        </button>
+                        <button
+                          type="button"
+                          title="Supprimer"
+                          aria-label={`Supprimer la commande ${order.id}`}
+                          className="flex h-[28px] w-[28px] items-center justify-center rounded-[7px] border border-[#f6d5da] text-[#e5374a] transition hover:bg-[#ffedf0]"
+                        >
+                          <icons.trash className="h-[14px] w-[14px]" />
                         </button>
                       </div>
                     </div>
-                  )
-                })}
+                  ))}
 
                 {rows.length === 0 ? (
                   <p className="border-t border-[#e8effb] py-10 text-center text-[13px] text-[#7d92c4]">

@@ -334,10 +334,6 @@ export function Clients() {
             <span>Messages</span>
             <span className={BADGE}>3</span>
           </Link>
-          <button type="button" className={NAV_ITEM}>
-            <icons.settings className="h-[26px] w-[26px] fill-white/90 text-white/90" />
-            <span>Paramètres</span>
-          </button>
         </nav>
 
         <div className="relative mx-[22px] mt-auto mb-[90px] flex shrink-0 flex-col items-center rounded-[8px] border border-[#1d4ba6] bg-[#0b2f85]/80 px-[18px] pt-[20px] pb-[22px] text-center">
@@ -557,16 +553,15 @@ export function Clients() {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[944px] table-fixed border-collapse text-left">
+                <table className="w-full min-w-[847px] table-fixed border-collapse text-left">
                   <colgroup>
                     <col style={{ width: 40 }} />
-                    <col style={{ width: 155 }} />
-                    <col style={{ width: 156 }} />
-                    <col style={{ width: 131 }} />
-                    <col style={{ width: 100 }} />
-                    <col style={{ width: 162 }} />
+                    <col style={{ width: 153 }} />
+                    <col style={{ width: 152 }} />
                     <col style={{ width: 127 }} />
-                    <col style={{ width: 73 }} />
+                    <col style={{ width: 100 }} />
+                    <col style={{ width: 156 }} />
+                    <col style={{ width: 119 }} />
                   </colgroup>
                   <thead>
                     <tr className="h-[41px] border-b border-[#e4ecf8] text-[12.5px] font-semibold text-[#0b2563]">
@@ -586,7 +581,6 @@ export function Clients() {
                       <th className="font-semibold">Commandes</th>
                       <th className="font-semibold">Dernière commande</th>
                       <th className="font-semibold">Statut</th>
-                      <th className="font-semibold">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="rows">
@@ -637,15 +631,6 @@ export function Clients() {
                         </td>
                         <td>
                           <StatusBadge status={client.status} />
-                        </td>
-                        <td className="pl-[28px]">
-                          <button
-                            type="button"
-                            className="grid h-8 w-8 place-items-center text-[#0b5cf0]"
-                            aria-label={`Actions pour ${client.name}`}
-                          >
-                            <icons.ellipsisVertical className="h-[20px] w-[20px] stroke-[3.2]" />
-                          </button>
                         </td>
                       </tr>
                     ))}

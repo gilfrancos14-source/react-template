@@ -500,12 +500,6 @@ export function Messages() {
                 </span>
               </Link>
             </li>
-            <li className="flex h-[55px] items-center">
-              <button type="button" className={NAV_ITEM}>
-                <icons.settings className="h-6 w-6 fill-white" />
-                Paramètres
-              </button>
-            </li>
           </ul>
         </nav>
 

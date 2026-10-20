@@ -202,10 +202,6 @@ export function AddProduct() {
               <span className="flex-1">Messages</span>
               <span className={BADGE}>3</span>
             </Link>
-            <button type="button" className={NAV_ITEM}>
-              <icons.settings className={NAV_ICON} />
-              Paramètres
-            </button>
           </nav>
 
           <div className="mx-[19px] mt-auto mb-[37px] rounded-xl border border-white/10 bg-[#0a3cae]/70 px-4 pt-5 pb-5 text-center">

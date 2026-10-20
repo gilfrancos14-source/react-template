@@ -425,9 +425,6 @@ export function Login() {
                       <div className="flex h-3.5 items-center px-1 text-[5.5px] text-white/60">
                         Messages
                       </div>
-                      <div className="flex h-3.5 items-center px-1 text-[5.5px] text-white/60">
-                        Paramètres
-                      </div>
                     </div>
                     <div className="min-w-0 flex-1 bg-[#F4F7FF] p-2.5">
                       <div className="text-brand-dark mb-2 text-[8px] font-bold">

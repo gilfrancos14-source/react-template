@@ -325,13 +325,22 @@ export function Products() {
                       {product.addedTime}
                     </div>
                   </div>
-                  <div className="pl-[16px]">
+                  <div className="flex items-center justify-center gap-[4px]">
                     <button
                       type="button"
-                      aria-label={`Actions pour ${product.name}`}
-                      className="rounded p-1 text-[#1c5fe0] hover:bg-soft"
+                      title="Modifier"
+                      aria-label={`Modifier ${product.name}`}
+                      className="flex h-[24px] w-[24px] items-center justify-center rounded-[6px] border border-[#d3e1f7] text-[#1c5fe0] transition hover:bg-soft"
                     >
-                      <icons.more className="h-5 w-5" strokeWidth={3} />
+                      <icons.squarePen className="h-[13px] w-[13px]" />
+                    </button>
+                    <button
+                      type="button"
+                      title="Supprimer"
+                      aria-label={`Supprimer ${product.name}`}
+                      className="flex h-[24px] w-[24px] items-center justify-center rounded-[6px] border border-[#f6d5da] text-[#e5374a] transition hover:bg-[#ffedf0]"
+                    >
+                      <icons.trash className="h-[13px] w-[13px]" />
                     </button>
                   </div>
                 </div>

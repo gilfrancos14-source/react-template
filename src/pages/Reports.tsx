@@ -11,6 +11,11 @@ const NAV_ICON = 'h-6 w-6 shrink-0 fill-current text-white/85 [fill-opacity:.25]
 const BADGE =
   'flex h-6 w-6 items-center justify-center rounded-full bg-[#0b6bff] text-[12px] font-medium'
 
+const portrait = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=160&h=160&q=80&crop=faces`
+
+const adminPhoto = portrait('1566492031773-4f4e44671857')
+
 const stats = [
   {
     icon: 'cart',
@@ -70,7 +75,7 @@ const latestOrders: {
   status: OrderStatus
   date: string
   time: string
-  avatar: string
+  photo: string
 }[] = [
   {
     id: '#CMD-001248',
@@ -80,7 +85,7 @@ const latestOrders: {
     status: 'Livrée',
     date: '20/11/2025',
     time: '14:32',
-    avatar: 'from-[#9a6a48] to-[#3b2418]',
+    photo: portrait('1519085360753-af0119f7cbe7'),
   },
   {
     id: '#CMD-001247',
@@ -90,7 +95,7 @@ const latestOrders: {
     status: 'Expédiée',
     date: '20/11/2025',
     time: '11:20',
-    avatar: 'from-[#b07a55] to-[#4a2c1c]',
+    photo: portrait('1580489944761-15a19d654956'),
   },
   {
     id: '#CMD-001246',
@@ -100,7 +105,7 @@ const latestOrders: {
     status: 'Livrée',
     date: '19/11/2025',
     time: '16:45',
-    avatar: 'from-[#7a4f35] to-[#2a1a12]',
+    photo: portrait('1506794778202-cad84cf45f1d'),
   },
   {
     id: '#CMD-001245',
@@ -110,7 +115,7 @@ const latestOrders: {
     status: 'En cours',
     date: '19/11/2025',
     time: '10:12',
-    avatar: 'from-[#a8714f] to-[#3d2418]',
+    photo: portrait('1531123897727-8f129e1688ce'),
   },
   {
     id: '#CMD-001244',
@@ -120,7 +125,7 @@ const latestOrders: {
     status: 'Expédiée',
     date: '18/11/2025',
     time: '19:05',
-    avatar: 'from-[#8c5d40] to-[#33201a]',
+    photo: portrait('1534528741775-53994a69daeb'),
   },
 ]
 
@@ -209,10 +214,6 @@ export function Reports() {
             <span className="flex-1">Messages</span>
             <span className={BADGE}>3</span>
           </Link>
-          <button type="button" className={NAV_ITEM}>
-            <icons.settings className={NAV_ICON} />
-            <span className="flex-1">Paramètres</span>
-          </button>
         </nav>
 
         <div className="mt-auto p-[23px] pb-[84px]">
@@ -260,11 +261,13 @@ export function Reports() {
               </span>
             </button>
             <div className="flex items-center gap-3">
-              <div
-                className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gradient-to-br from-[#8a5a3c] to-[#3b2418] text-[15px] font-semibold text-white"
-                title="Remplacer par la photo de profil"
-              >
+              <div className="relative flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#8a5a3c] to-[#3b2418] text-[15px] font-semibold text-white">
                 BG
+                <img
+                  src={adminPhoto}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
               </div>
               <div className="hidden leading-tight sm:block">
                 <div className="text-[15px] font-semibold text-[#0a2a7a]">Bidosessi G.</div>
@@ -507,14 +510,13 @@ export function Reports() {
                           </td>
                           <td>
                             <div className="flex items-center gap-3">
-                              <div
-                                className={cn(
-                                  'flex h-[37px] w-[37px] items-center justify-center rounded-full bg-gradient-to-br text-[12px] font-semibold text-white',
-                                  order.avatar,
-                                )}
-                                title="Remplacer par l'avatar du client"
-                              >
+                              <div className="relative flex h-[37px] w-[37px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#9a6a48] to-[#3b2418] text-[12px] font-semibold text-white">
                                 {order.name.slice(0, 1)}
+                                <img
+                                  src={order.photo}
+                                  alt=""
+                                  className="absolute inset-0 h-full w-full object-cover"
+                                />
                               </div>
                               <div className="leading-[17px]">
                                 <div className="text-[12.5px] text-[#0a2a7a]">
